@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/main_menu_explosion_city" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_2" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_3" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_4" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_5" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_6" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_7" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_8" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_9" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_10" android:duration="80" />
+    <item android:drawable="@drawable/main_menu_explosion_city_blank" android:duration="13000"/>
+</animation-list>

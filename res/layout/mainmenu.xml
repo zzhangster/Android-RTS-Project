@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- BackGround City Image -->
+    <ImageView 
+        android:id="@+id/mainMenuBackground"
+        android:src="@drawable/main_menu_background"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_x="0dp" 
+        android:layout_y="0dp"
+    />
+    
+    <!-- Planes 1 -->
+    <ImageView 
+        android:id="@+id/mainMenuPlanes1"
+        android:src="@drawable/main_menu_planes"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_x="-20dp" 
+        android:layout_y="10dp"
+    />
+    
+    <ImageView 
+        android:id="@+id/mainMenuExplosionCityOne"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_x="35dp" 
+        android:layout_y="200dp"
+    />      
+    
+    <ImageView 
+        android:id="@+id/mainMenuExplosionCityTwo"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="380dp" 
+        android:layout_y="190dp"
+    />    
+    
+    <ImageView 
+        android:id="@+id/mainMenuExplosionCityThree"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_x="200dp" 
+        android:layout_y="190dp"
+    />      
+    
+    <!-- ForeGround Cloud Image -->
+    <ImageView 
+        android:id="@+id/mainMenuCloudForeground"
+        android:src="@drawable/main_menu_cloudforeground"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_x="0dp" 
+        android:layout_y="40dp"
+    />
+    
+    <ImageView
+        android:id="@+id/mainMenuTracerFireOne"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="7dp"
+        android:layout_height="250dp"
+        android:layout_x="35dp" 
+        android:layout_y="40dp" 
+    />        
+    
+    <ImageView
+        android:id="@+id/mainMenuTracerFireTwo"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="5dp"
+        android:layout_height="200dp"
+        android:layout_x="165dp" 
+        android:layout_y="40dp" 
+    />   
+    
+    <ImageView
+        android:id="@+id/mainMenuTracerFireThree"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="2dp"
+        android:layout_height="100dp"
+        android:layout_x="250dp" 
+        android:layout_y="120dp" 
+    />  
+    
+     <ImageView
+        android:id="@+id/mainMenuTracerFireFour"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="5dp"
+        android:layout_height="200dp"
+        android:layout_x="365dp" 
+        android:layout_y="40dp" 
+    />   
+  
+      <ImageView
+        android:id="@+id/mainMenuTracerFireFive"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="2dp"
+        android:layout_height="100dp"
+        android:layout_x="450dp" 
+        android:layout_y="120dp" 
+    />  
+    
+    <!-- Bomber 1 -->
+    <ImageView 
+        android:id="@+id/mainMenuBomberOne"
+        android:src="@drawable/main_menu_bomber"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_x="-20dp" 
+        android:layout_y="-20dp"
+    />  
+    
+    <!-- Fighters 1 -->
+    <ImageView 
+        android:id="@+id/mainMenuFightersOne"
+        android:src="@drawable/main_menu_fighters"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="30dp"
+        android:layout_height="17dp"
+        android:layout_x="-20dp" 
+        android:layout_y="-20dp"
+    />      
+    <!-- Text/Tile Related Items -->    
+    <LinearLayout  
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_x="0dp" 
+        android:layout_y="20dp" 
+        android:gravity="center_horizontal">
+        
+        <!-- <ImageView 
+	          android:id="@+id/mainMenuTitle"
+	          android:src="@drawable/title"
+	          android:adjustViewBounds="true"
+	          android:layout_width="336dp" 
+	          android:layout_height="153dp" 
+	          android:gravity="center_horizontal" 
+        />-->
+    </LinearLayout>
+    
+    
+    
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_x="0dp" 
+        android:layout_y="0dp" 
+        android:orientation="vertical"
+        android:gravity="bottom">
+        
+        
+        <!--  <ImageView 
+            android:id="@+id/startButton"
+	        android:src="@drawable/ui_button_start"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content" 
+	        android:layout_gravity="center_horizontal"
+	        android:clickable="true"/>
+            
+        <LinearLayout 
+            android:layout_width="fill_parent" 
+            android:layout_height="10dip" 
+            xmlns:android="http://schemas.android.com/apk/res/android"/>
+            
+        <ImageView
+            android:id="@+id/continueButton" 
+			android:src="@drawable/ui_button_options"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"/>-->
+           
+        <LinearLayout 
+            android:layout_width="fill_parent"
+			xmlns:android="http://schemas.android.com/apk/res/android" 
+			android:layout_height="30dip"/>
+			
+        <ImageView
+            android:id="@+id/MainMenuStartButton" 
+            android:src="@drawable/main_menu_start_button"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"/>
+           
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android" 
+            android:layout_height="5dip"/>
+        
+        <ImageView
+            android:id="@+id/MainMenuOptionsButton" 
+            android:src="@drawable/main_menu_options_button"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"/>
+            
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android" 
+            android:layout_height="5dip"/>
+            
+        <ImageView
+            android:id="@+id/MainMenuQuitButton" 
+            android:src="@drawable/main_menu_quit_button"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"/>
+           
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android" 
+            android:layout_height="20dip"/>
+		   
+       <!--  <TextView 
+           	android:layout_gravity="bottom|fill_horizontal" 
+           	android:layout_width="fill_parent" 
+           	android:layout_height="wrap_content" 
+           	android:ellipsize="marquee" 
+           	android:background="#99000000" 
+           	android:textColor= "#FFFFFF" 
+           	android:textColorHighlight="#FFFFFF" 
+           	android:text="@string/whats_new_ticker" 
+           	android:lines="1" 
+           	android:marqueeRepeatLimit="marquee_forever" 
+           	android:textSize="14sp" 
+           	android:fadingEdge="horizontal" 
+           	android:fadingEdgeLength="5dp" 
+           	android:focusable="false" 
+           	android:id="@+id/ticker"
+           	android:singleLine="true"/>  -->
+           	
+    </LinearLayout>
+       
+</AbsoluteLayout> 

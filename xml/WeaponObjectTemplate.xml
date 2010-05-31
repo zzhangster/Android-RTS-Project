@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WeaponObjectXMLList>
+
+	<WeaponObject>
+		<Name></Name>
+		<TypeName></TypeName> <!-- For Identification -->
+		
+		<!-- Art Properties -->
+		<MuzzleFlashAnimation></MuzzleFlashAnimation>
+		<ProjectileAnimation></ProjectileAnimation>
+		
+		<!-- Weapon Properties -->
+		<Speed></Speed>
+		<IsHoming></IsHoming>
+		<Damage></Damage>
+		<CanTargetAir></CanTargetAir>
+		<Piercing></Piercing> <!-- value negates target armor -->
+		<LancePierce></LancePierce> <!--  If true, then any units between shooter and target gets damaged -->
+		<Accuracy></Accuracy>
+		<ImpactForce></ImpactForce> <!-- 0 with no push, else checks weight of target hit -->
+		<SplashDmgRadius></SplashDmgRadius> <!-- Splash Damage radius, 0 is no splash dmg -->
+		
+		<!-- On Hit Properties -->
+		<OnHitProperties>
+			<ExplosionAnimation></ExplosionAnimation> <!-- What explosion type -->
+			<ResidualEffect> <!-- Leave Residual Animation -->
+				<ResidualAnimation></ResidualAnimation> <!-- What does residual type look like -->
+				<ResidualDmg></ResidualDmg>
+				<Duration></Duration>
+			</ResidualEffect>
+		</OnHitProperties>
+		
+	</WeaponObject>
+
+</WeaponObjectXMLList>

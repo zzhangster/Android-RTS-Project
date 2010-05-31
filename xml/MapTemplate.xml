@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MapBackGround>
+
+    <!-- Map Properties -->
+	<MapBackGroundProperties>
+		<Name></Name>
+		<Directory></Directory> <!-- Location of Map File -->
+		<StartCoord>
+			<StartCoordX></StartCoordX>
+			<StartCoordY></StartCoordY>
+			<Height></Height>
+			<Width></Width>
+		</StartCoord>
+	</MapBackGroundProperties>
+	
+	
+	<!-- Weather Properties and Other global properties -->
+	<MapProperties>
+		<Camera>
+			<StartingPosition>
+				<XCoord></XCoord>
+				<YCoord></YCoord>
+			</StartingPosition>
+			<Direction>
+				<XField></XField>
+				<YField></YField>
+			</Direction>
+		</Camera>
+		<Lighting> <!-- Time of Day -->
+			<Direction></Direction>
+			<Intensity></Intensity> <!-- Higher means brighter screens, etc -->
+			<HeightOfSun></HeightOfSun> <!-- Higher means means shorter shadows, lower means longer shadow -->
+		</Lighting>
+		<Wind>
+			<Direction></Direction>
+			<Magnitude></Magnitude>  <!-- Wind Strength -->
+		</Wind>
+		<Weather>
+			<!-- Direction based on Wind previously -->
+			<WeatherType></WeatherType> <!-- 0(Default) Sunny, 1-Rain, 2-Snow, 3-SandStorm -->
+			<Intensity></Intensity> <!-- How intense weather is -->
+		</Weather>	
+	</MapProperties>
+	
+	
+	<!-- Objects in Map -->
+	<MapObjects>
+	
+		<!-- 
+		====================
+		== MAP VEGETATION ==
+		==================== 
+		-->
+		<VegetationObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</VegetationObject>
+		
+		
+		<!-- 
+		=========================
+		== Building Object Typ ==
+		========================= 
+		-->		
+		<BuildingObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</BuildingObject>
+		
+		<!-- 
+		=====================
+		== Misc Object Typ ==
+		===================== 
+		-->	
+		<MiscObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</MiscObject>
+		
+	</MapObjects>
+	
+</MapBackGround>

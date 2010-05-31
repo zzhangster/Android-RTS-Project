@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildingXMLList>
+
+	<!-- First Object -->
+	<BuildingObject>
+		<!-- Object Properties -->
+		<Name></Name>
+		<Directory></Directory> <!-- Hmmm Place of graphic art -->
+		<Size>
+			<Height></Height> <!-- For drawing and collision detection, helicopter collisions will be based on object height -->
+			<Width></Width>
+		</Size>
+		
+		<!--  Identification Properties -->
+		<TypeName></TypeName>
+	</BuildingObject>
+	
+	<!-- Second Object -->
+	<BuildingObject>
+	    <!-- Object Properties -->
+	    <Name></Name>
+	    <Directory></Directory> <!-- Hmmm Place of graphic art -->
+	    <Size></Size>
+	    <Size>
+	        <Height></Height> <!-- For drawing and collision detection, helicopter collisions will be based on object height -->
+	        <Width></Width>
+	    </Size>
+	    
+	    <!--  Identification Properties -->
+	    <TypeName></TypeName>
+	</BuildingObject>
+
+</BuildingXMLList>

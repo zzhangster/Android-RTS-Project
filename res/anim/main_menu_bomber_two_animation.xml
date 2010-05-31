@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" 
+     android:interpolator="@android:anim/linear_interpolator"
+     android:repeatCount="infinite">
+    <translate 
+        android:fromXDelta="-40%p" 
+        android:toXDelta="250%p"
+        android:fromYDelta="0%p" 
+        android:toYDelta="40%p" 
+        android:duration="30500"
+        android:repeatCount="infinite"/>
+    <scale
+        android:fromXScale="1.0" 
+        android:toXScale="0.5"
+        android:fromYScale="1.0"
+        android:toYScale="0.5"
+        android:duration="30500"
+        android:repeatCount="infinite"/>
+</set>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MiscObjectXMLList>
+
+	<!-- First Object -->
+	<MiscObject>
+		<!-- Object Properties -->
+		<Name></Name>
+		<Directory></Directory> <!-- Hmmm Place of graphic art -->
+		<Size>
+			<Height></Height> <!-- For drawing and collision detection, helicopter collisions will be based on object height -->
+			<Width></Width>
+		</Size>
+		<Height></Height>
+		
+		<!--  Identification Properties -->
+		<TypeName></TypeName>
+	</MiscObject>
+	
+	<!-- Second Object -->
+	<MiscObject>
+		<!-- Object Properties -->
+		<Name></Name>
+		<Directory></Directory> <!-- Hmmm Place of graphic art -->
+		<Size>
+			<Height></Height> <!-- For drawing and collision detection, helicopter collisions will be based on object height -->
+			<Width></Width>
+		</Size>
+		<Height></Height>
+		
+		<!--  Identification Properties -->
+		<TypeName></TypeName>
+	</MiscObject>
+
+</MiscObjectXMLList>
