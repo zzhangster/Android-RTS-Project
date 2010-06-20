@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InfantryObjectXMLList>
+	<InfantryObject>
+	
+		<!-- Graphic Properties -->
+		<Name></Name> <!-- User identification -->
+		<TypeName></TypeName> <!-- Mapping Identification -->
+		<Directory></Directory>
+		
+		<!-- Physcial Properties -->
+		<IsPlayable></IsPlayable>
+		<NumberPerSquad></NumberPerSquad> <!-- Number of Infantry Per squad -->
+		<Type></Type> <!-- 0 treaded tanks, 1 wheel vehicles, 2 civilian vehicles -->
+		<Speed></Speed>
+		<Armor></Armor>
+		<HitPoints></HitPoints>
+		<TurnRate></TurnRate>
+		<Weight></Weight> <!-- Used to Determine, how far it flies when hit -->
+		<Size> <!-- Overall Size, should surround entire unit -->
+			<Height></Height> <!-- For drawing and collision detection, helicopter collisions will be based on object height -->
+			<Width></Width>
+			<Radius></Radius> <!-- Radius A circle around unit for collision detection (pathfinding wise) -->
+		</Size>
+		
+		<WeaponProperties>
+			<Weapon></Weapon> <!-- What weapon type it is, defined in another xml -->
+		</WeaponProperties>
+	
+	</InfantryObject>
+</InfantryObjectXMLList>

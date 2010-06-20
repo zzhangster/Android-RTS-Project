@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MapBackGround>
+
+    <!-- Map Properties -->
+	<MapBackGroundProperties>
+		<Name>MapLevel1</Name>
+		<Directory>art/MapLevel1.jpg</Directory> <!-- Location of Map Art File -->
+		<StartCoord>
+			<StartCoordX>100</StartCoordX>
+			<StartCoordY>100</StartCoordY>
+			<Height>500</Height>
+			<Width>500</Width>
+		</StartCoord>
+	</MapBackGroundProperties>
+	
+	
+	<!-- Weather Properties and Other global properties -->
+	<MapProperties>
+	
+		<Camera>
+			<StartingPosition>
+				<XCoord>50</XCoord>
+				<YCoord>50</YCoord>
+			</StartingPosition>
+		</Camera>
+	
+		<Lighting>
+			<Direction>45</Direction> <!-- Angle -->
+			<Intensity>5</Intensity> <!-- Higher means brighter screens, etc -->
+			<HeightOfSun>100</HeightOfSun> <!-- Higher means means shorter shadows, lower means longer shadow -->
+		</Lighting>
+		<Wind>
+			<Direction>45</Direction> <!-- Angel -->
+			<Magnitude>5</Magnitude>  <!-- Wind Strength -->
+		</Wind>
+		<Weather>
+			<!-- Direction based on Wind previously -->
+			<WeatherType>0</WeatherType> <!-- 0(Default) Sunny, 1-Rain, 2-Snow, 3-SandStorm -->
+			<Intensity>0</Intensity> <!-- How intense weather is -->
+		</Weather>	
+	</MapProperties>
+	
+	
+	<!-- Objects in Map -->
+	<MapObjects>
+	
+		<!-- 
+		====================
+		== MAP VEGETATION ==
+		==================== 
+		-->
+		<VegetationObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</VegetationObject>
+		
+		
+		<!-- 
+		==========================
+		== Building Object Type ==
+		========================== 
+		-->		
+		<BuildingObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</BuildingObject>
+		
+		<!-- 
+		======================
+		== Misc Object Type ==
+		======================
+		-->	
+		<MiscObject>
+			<Type></Type> <!-- Matches the TypeName of objects -->
+			<Location>
+				<LocationX></LocationX>
+				<LocationY></LocationY>
+			</Location>
+		</MiscObject>
+		
+	</MapObjects>
+	
+</MapBackGround>

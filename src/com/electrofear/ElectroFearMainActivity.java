@@ -4,7 +4,10 @@ package com.electrofear;
 
 import java.util.ArrayList;
 
+
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -24,13 +27,15 @@ public class ElectroFearMainActivity extends Activity {
     /*-- Button Setup for Main Page, Create an Intent with each Button Press --*/
     private View.OnClickListener startNewGameButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
-        	
+        	//alsjlfals;djfl
+            Intent i = new Intent(getBaseContext(), ElectroFearActivity.class);
+            startActivity(i); //move to later
         }
     };
     
     private View.OnClickListener continueButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
-        	
+              
         }
     };
     

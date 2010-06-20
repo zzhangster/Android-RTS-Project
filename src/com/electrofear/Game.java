@@ -1,0 +1,103 @@
+package com.electrofear;
+
+import com.electrofear.*;
+
+
+
+
+
+
+
+import android.content.Context;
+import android.opengl.GLSurfaceView;
+import android.opengl.GLSurfaceView.Renderer;
+
+
+public class Game {
+    private GameThread mGameThread;
+    private Thread mGame;
+    private ObjectManager mGameRoot;
+    
+    private GameRenderer mRenderer;
+    private GLSurfaceView mSurfaceView;
+    private ContextParameters mContextParameters;    
+    
+    private boolean mRunning;
+    private boolean mBootstrapComplete;    
+    private boolean mGLDataLoaded;
+
+    
+    public Game() {
+        mRunning = false;
+        mBootstrapComplete = false;
+        mGLDataLoaded = false;
+        mContextParameters = new ContextParameters();        
+    }
+    
+    public void setSurfaceView(GLSurfaceView myGLSurfaceView) {
+        // TODO Auto-generated method stub
+        
+    }
+    public void bootstrap(Context context, int viewWidth, int viewHeight, int gameWidth, int gameHeight) {
+        // TODO Auto-generated method stub
+        mGameRoot = new ObjectManager();
+        mRenderer = new GameRenderer(context, this, gameWidth, gameHeight);
+        mGameThread = new GameThread(mRenderer);
+        
+        //Add Items to 
+        
+        //Add GameRoot to gamethread so the gamethread can update the root during run function
+        mGameThread.setGameRoot(mGameRoot);
+        //start adding items to the 
+        //start();
+    }
+    
+    public void start() {
+        if (!mRunning) {
+            assert mGame == null;
+            // Now's a good time to run the GC.
+            Runtime r = Runtime.getRuntime();
+            r.gc();
+            mGame = new Thread(mGameThread);
+            mGame.setName("Game");
+            mGame.start();
+            mRunning = true;
+        } else {
+            mGameThread.resumeGame();
+        }
+    } 
+    
+    //GOING TO ACTUAL LEVEL after surface change detected
+    public void onSurfaceReady() {
+        goToLevel(1);
+    }
+    
+    protected synchronized void goToLevel(int level) {
+        //attach root here so that drawing object will be added to mGameRoot
+        BaseObject.levelSystem.loadLevel(level, mGameRoot);
+        start();
+    }
+    
+    public Renderer getRenderer() {
+        // TODO Auto-generated method stub
+        return mRenderer;
+    }
+    
+    public void onSurfaceCreated() {
+        
+            
+            //mSurfaceView.loadTextures(BaseObject.sSystemRegistry.longTermTextureLibrary);
+            //mSurfaceView.loadTextures(BaseObject.sSystemRegistry.shortTermTextureLibrary);
+            //mSurfaceView.loadBuffers(BaseObject.sSystemRegistry.bufferLibrary);
+            mGLDataLoaded = true;
+          
+    }
+    public void onPause() {
+        // TODO Auto-generated method stub
+        
+    }
+    public void onResume() {
+        // TODO Auto-generated method stub
+        
+    }
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VehicleObjectXMLList>
+
+	<!-- FOR ONE VEHICLE OBJECT -->
+	<VehicleObject>
+	    <!-- Identification -->
+	    <ObjectID>Merkava_Tank</ObjectID>
+	    <Name>Merkava Tank</Name>
+	    <!-- Rendering Items -->
+        <Height>10</Height>
+        <Width>10</Width>
+        <Image>MerkavaBase</Image>
+        <Turret>
+            <TurretID>MerkavaTurret</TurretID>
+            <PositionX>5</PositionX>
+            <PositionY>5</PositionY>
+	        <Weapon>
+	            <WeaponID>TankShell</WeaponID>
+	        </Weapon>
+            <TurretTurnRate>5</TurretTurnRate>
+        </Turret>
+        <!-- Logic Types -->     
+        <ObjectType>Tank</ObjectType>
+        <Speed>10</Speed>
+        <TurnRate>5</TurnRate> <!-- This is for the hull -->
+	</VehicleObject>
+	
+    <!-- FOR ONE VEHICLE OBJECT -->
+    <VehicleObject>
+        <!-- Identification -->
+        <ObjectID>Merkava_Tank_1</ObjectID>
+        <Name>Merkava Tank</Name>
+        <!-- Rendering Items -->
+        <Height>10</Height>
+        <Width>10</Width>
+        <Image>MerkavaBase</Image>
+        <TurrentType id="MerkavaTurret">
+            <PositionX>5</PositionX>
+            <PositionY>5</PositionY>
+            <WeaponType id="TankShell"></WeaponType>
+            <TurretTurnRate>5</TurretTurnRate>
+        </TurrentType>
+        <!-- Logic Types -->     
+        <ObjectType>Tank</ObjectType>
+        <Speed>10</Speed>
+        <TurnRate>5</TurnRate> <!-- This is for the hull -->
+    </VehicleObject>
+
+</VehicleObjectXMLList>
