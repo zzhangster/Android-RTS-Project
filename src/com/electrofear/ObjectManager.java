@@ -17,6 +17,10 @@ public class ObjectManager extends BaseObject{
         mPendingRemovals = new ArrayList();
     }
     
+    public ArrayList<BaseObject> getMObjectList(){
+        return mObjectList;
+    }
+    
     public void update(float secondsDelta, BaseObject parent) {
         // TODO Auto-generated method stub
         
@@ -26,6 +30,14 @@ public class ObjectManager extends BaseObject{
         }
     }
 
+    public void clear(){
+        BaseObject tempObject;
+        for (int i = 0; i < mObjectList.size(); i++){
+            tempObject = mObjectList.get(i);
+            tempObject = null;
+        }
+        mObjectList.clear();
+    }
 
     public void add(BaseObject object) {
         // TODO Auto-generated method stub

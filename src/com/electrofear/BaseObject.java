@@ -7,12 +7,12 @@ import java.util.TreeMap;
 
 /* All objects must inherit from this object - this will have a static object registery */
 public class BaseObject {
-    public static MasterObjectRegistry objRegistry; // DO WE REALLY NEED THIS ONE?
+    //public static MasterObjectRegistry objRegistry; // DO WE REALLY NEED THIS ONE?
     
     //Progress Week 2, OBJ Manager and OBJ Factory
     //Factory Creates any spawnable objects, while manager manages them
     public static ObjectManager objManager;
-    public static GameObjectFactory objFactory;
+    public static GameObjectFactory objFactory = new GameObjectFactory();
     
     //public static CameraMainSystem cameraSystem; // CameraSystem
     public static CollisionMainSystem collisionSystem; // Collision System
@@ -22,6 +22,12 @@ public class BaseObject {
     public static Map globalUnitObjData = new TreeMap();
 
     public static Object sSystemRegistry;
+    
+    //TEXTURE LIBRARY, holds TEXTURE OBJECTS which contains the drawable id and openGL id
+    public static TextureLibrary mapLibrary = new TextureLibrary();
+    public static TextureLibrary objectLibrary = new TextureLibrary();
+    public static TextureLibrary effectsLibrary = new TextureLibrary();
+    public static TextureLibrary uiLibrary = new TextureLibrary();
 
     //List of Systems
     public static RenderSystem renderSystem = new RenderSystem();

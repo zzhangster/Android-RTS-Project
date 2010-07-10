@@ -3,27 +3,32 @@ package com.electrofear;
 
 
 public class RenderSystem {
-    private ObjectManager mRenderQueues;
+    private ObjectManager[] mRenderQueues;
+    private int renderQueueIndex = 0;//current render queue
+    private int TOTALQUEUE = 2;
     
     public RenderSystem(){
-        mRenderQueues = new ObjectManager();
+        mRenderQueues = new ObjectManager[TOTALQUEUE];
+        for (int i = 0; i < TOTALQUEUE; i++){
+            mRenderQueues[i] = new ObjectManager();
+        }
     }
     
     public void setRenderQueue(GameRenderer renderer, float cameraX, float cameraY){
-        renderer.setDrawQueue(mRenderQueues, cameraX, cameraY); 
+        renderer.setDrawQueue(mRenderQueues[renderQueueIndex], cameraX, cameraY); 
     }
     
-    /** 
-     * Schedule an object for drawing... need to call BaseObject.RenderSystem.scheduleForDraw
-     * Use setRenderQueue later to pass the objects to the rendering thread
-     * may be slow.
-     * @param classObject The class type to search for (e.g. BaseObject.class).
-     * @return
-     */
-    public void scheduleForDraw(BaseObject object, float positionX, float positionY, int priority, boolean cameraRelative){
-        //TODO change positionX and positionY to vector class
-        mRenderQueues.add(object);
+    public void swapQueue(GameRenderer renderer, float cameraX, float cameraY){
+        renderer.setDrawQueue(mRenderQueues[renderQueueIndex], cameraX, cameraY);
+        
+        //Clear Current view for placement
+        renderQueueIndex = (renderQueueIndex + 1) % TOTALQUEUE;
+        mRenderQueues[renderQueueIndex].clear();
     }
+    public void scheduleForDraw(BaseObject object){
+        //TODO change positionX and positionY to vector class
+        mRenderQueues[renderQueueIndex].add(object);
+    }    
 
     public void emptyQueues(GameRenderer mRenderer) {
         // TODO Auto-generated method stub
@@ -31,7 +36,7 @@ public class RenderSystem {
     }
 
     public void scheduleForDraw(DrawableObject mDrawable,
-            Vector2 mPositionWorkspace, int mPriority, boolean mCameraRelative) {
+        Vector2 mPositionWorkspace, int mPriority, boolean mCameraRelative) {
         // TODO Auto-generated method stub
         
     }

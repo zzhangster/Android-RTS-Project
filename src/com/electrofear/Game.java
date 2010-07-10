@@ -1,11 +1,8 @@
 package com.electrofear;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import com.electrofear.*;
-
-
-
-
-
 
 
 import android.content.Context;
@@ -68,13 +65,14 @@ public class Game {
     } 
     
     //GOING TO ACTUAL LEVEL after surface change detected
-    public void onSurfaceReady() {
-        goToLevel(1);
+    public void onSurfaceReady(Context mContext, GL10 gl) {
+        goToLevel(1, mContext, gl);
     }
     
-    protected synchronized void goToLevel(int level) {
+    protected synchronized void goToLevel(int level, Context mContext, GL10 gl) {
         //attach root here so that drawing object will be added to mGameRoot
         BaseObject.levelSystem.loadLevel(level, mGameRoot);
+        BaseObject.mapLibrary.loadAllTextures(mContext, gl);
         start();
     }
     

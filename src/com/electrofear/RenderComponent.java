@@ -26,19 +26,22 @@ public class RenderComponent extends BaseObject {
         mPriority = 0;
         mCameraRelative = true;
         mDrawable = null;
-        mDrawOffset.zero();
+        mDrawOffset = null;
     }
+    
+
 
     public void update(float timeDelta, BaseObject parent) {
         if (mDrawable != null) {
             RenderSystem system = BaseObject.renderSystem;
             if (system != null) {
-                mPositionWorkspace.set(((GameObject)parent).getPosition());
-                mPositionWorkspace.add(mDrawOffset);
+                //mPositionWorkspace.set(((GameObject)parent).getPosition());
+                //mPositionWorkspace.add(mDrawOffset);
 
-                if (mDrawable.visibleAtPosition(mScreenLocation)) {
+                /*if (mDrawable.visibleAtPosition(mScreenLocation)) {
                     system.scheduleForDraw(mDrawable, mPositionWorkspace, mPriority, mCameraRelative);
-                }
+                }*/
+                system.scheduleForDraw(mDrawable);
             }
         }
     }

@@ -14,8 +14,11 @@ public class GameThread implements Runnable{
         // TODO Auto-generated method stub
         mFinished = false;
         while (!mFinished) {
+    
+            
             if (mGameRoot != null) {
-                
+                //Wait for Rendering Thread to Finish
+                mRenderer.waitDrawingComplete();                
                 final long time = SystemClock.uptimeMillis();
                 final long timeDelta = time - mLastTime;
                 long finalDelta = timeDelta;
@@ -30,12 +33,13 @@ public class GameThread implements Runnable{
                     //TODO get camera positions and pass below
                     //This calls the setRenderQueue in render system which will eventually set the rendering thread to
                     //a queue of objects
-                    BaseObject.renderSystem.setRenderQueue(mRenderer, 10f, 10f);
+                    BaseObject.renderSystem.swapQueue(mRenderer, 10f, 10f);
                 }
                 else {
                     
                 }
             }
+
         }
         BaseObject.renderSystem.emptyQueues(mRenderer);
     }

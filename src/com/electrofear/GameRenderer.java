@@ -2,6 +2,7 @@ package com.electrofear;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -49,43 +50,49 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         long time = SystemClock.uptimeMillis();
         long time_delta = (time - mLastTime);
         
-        if (mDrawQueue != null) {
-            gl.glShadeModel(GL10.GL_FLAT);
-            gl.glEnable(GL10.GL_BLEND);
-            gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-            gl.glColor4x(0x10000, 0x10000, 0x10000, 0x10000);
-    
-            gl.glMatrixMode(GL10.GL_PROJECTION);
-            gl.glPushMatrix();
-            gl.glLoadIdentity();
-            gl.glOrthof(0.0f, mWidth, 0.0f, mHeight, 0.0f, 1.0f);
-            gl.glMatrixMode(GL10.GL_MODELVIEW);
-            gl.glPushMatrix();
-            gl.glLoadIdentity();
-            gl.glEnable(GL10.GL_TEXTURE_2D);
-    
-            //DRAW STUFF HERE!
-            //Get objects from DRAWING QUEUE
-            //also call draw function!
-            // TODO DO ABOVE TWO
+        synchronized(this){
+            if (mDrawQueue != null) {
+                
+                ArrayList<BaseObject> objectDrawList = mDrawQueue.getMObjectList();
+                
+                gl.glShadeModel(GL10.GL_FLAT);
+                gl.glEnable(GL10.GL_BLEND);
+                gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
+                gl.glColor4x(0x10000, 0x10000, 0x10000, 0x10000);
             
-            //END OF DRAWING STUFF HERE
-            gl.glBindTexture(GL10.GL_TEXTURE_2D, 1);
-            ((GL11Ext) gl).glDrawTexfOES(0, 0, 0, 330, 486);
-            
-            
-            gl.glDisable(GL10.GL_BLEND);
-            gl.glMatrixMode(GL10.GL_PROJECTION);
-            gl.glPopMatrix();
-            gl.glMatrixMode(GL10.GL_MODELVIEW);
-            gl.glPopMatrix();        
-        }
-        else {
-            gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+                gl.glMatrixMode(GL10.GL_PROJECTION);
+                gl.glPushMatrix();
+                gl.glLoadIdentity();
+                gl.glOrthof(0.0f, mWidth, 0.0f, mHeight, 0.0f, 1.0f);
+                gl.glMatrixMode(GL10.GL_MODELVIEW);
+                gl.glPushMatrix();
+                gl.glLoadIdentity();
+                gl.glEnable(GL10.GL_TEXTURE_2D);
+                
+                for (int i = 0; i < objectDrawList.size(); i++){
+                    DrawableBitmap temp = (DrawableBitmap) (objectDrawList.get(i));
+                    temp.startDrawing(gl);
+                }
+                
+                
+                gl.glDisable(GL10.GL_BLEND);
+                gl.glMatrixMode(GL10.GL_PROJECTION);
+                gl.glPopMatrix();
+                gl.glMatrixMode(GL10.GL_MODELVIEW);
+                gl.glPopMatrix();
+                
+            }
+            else {
+                gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+            }
         }
         
     }
     
+    public synchronized void checkRenderingIsFinshed(){
+        
+    }
+
     public synchronized void setDrawQueue(ObjectManager queue, float cameraX, float cameraY) {
         mDrawQueue = queue;
         this.cameraX = cameraX;
@@ -114,7 +121,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         gl.glFrustumf(-ratio, ratio, -1, 1, 1, 10);
         
         
-        mGame.onSurfaceReady();
+        mGame.onSurfaceReady(mContext, gl);
         
     }
 
@@ -138,7 +145,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         // IMPORTANT BECAUSE textures can be deleted! NOTICE that if you leave app and come back
         // this function is called
         
-        textureTest(gl);
+        //textureTest(gl);
 
 
     }
@@ -181,11 +188,6 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D, 
                 GL11Ext.GL_TEXTURE_CROP_RECT_OES, mCropWorkspace, 0);
 
-        
-        int error = gl.glGetError();
-        if (error != GL10.GL_NO_ERROR) {
-            Log.e("SpriteMethodTest", "Texture Load GLError: " + error);
-        }
     }
     
     public synchronized void waitDrawingComplete() {
