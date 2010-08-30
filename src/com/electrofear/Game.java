@@ -2,9 +2,6 @@ package com.electrofear;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.electrofear.*;
-
-
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -41,7 +38,15 @@ public class Game {
         mRenderer = new GameRenderer(context, this, gameWidth, gameHeight);
         mGameThread = new GameThread(mRenderer);
         
-        //Add Items to 
+        /*-- Set ContextParameters --*/
+        BaseObject.contextParameters.viewWidth = viewWidth;
+        BaseObject.contextParameters.viewHeight = viewHeight;
+        BaseObject.contextParameters.gameWidth = gameWidth;
+        BaseObject.contextParameters.gameHeight = gameHeight;
+        BaseObject.contextParameters.viewScaleX = (float)viewWidth / gameWidth;
+        BaseObject.contextParameters.viewScaleY = (float)viewHeight / gameHeight;
+        BaseObject.contextParameters.context = context;
+        BaseObject.contextParameters.gameRoot = mGameRoot;
         
         //Add GameRoot to gamethread so the gamethread can update the root during run function
         mGameThread.setGameRoot(mGameRoot);
@@ -71,7 +76,7 @@ public class Game {
     
     protected synchronized void goToLevel(int level, Context mContext, GL10 gl) {
         //attach root here so that drawing object will be added to mGameRoot
-        BaseObject.levelSystem.loadLevel(level, mGameRoot);
+        BaseObject.levelSystem.loadLevel(level);
         BaseObject.mapLibrary.loadAllTextures(mContext, gl);
         start();
     }

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RULES>
+
+<!-- GENERAL FACTION ATTRIBUTES TO BE USED 
+     EACH FACTION HAVE MULTIPLIERS         -->
+
+<Factions>
+    <FACTION>
+        <OwnerName>NAC</OwnerName>
+        <Name>North Algean Coalition</Name>
+        <FirePower>1.0</FirePower> 
+        <GroundSpeed>1.0</GroundSpeed>
+        <AirSpeed>1.0</AirSpeed>
+        <Armor>1.0</Armor>
+        <ROF>1.0</ROF>
+        <PointCost>1.0</PointCost>
+        <RechargeTime>1.0</RechargeTime>
+    </FACTION>
+
+    <FACTION>
+        <OwnerName>RRE</OwnerName>
+        <Name>Royal Republic of Elesia</Name>
+        <FirePower>1.0</FirePower> 
+        <GroundSpeed>1.0</GroundSpeed>
+        <AirSpeed>1.0</AirSpeed>
+        <Armor>1.0</Armor>
+        <ROF>1.0</ROF>
+        <PointCost>1.0</PointCost>
+        <RechargeTime>1.0</RechargeTime>
+    </FACTION>
+
+    <FACTION>
+        <OwnerName>FCA</OwnerName>
+        <Name>Federal Commonwealth of Alkazia</Name>
+        <FirePower>1.0</FirePower> 
+        <GroundSpeed>1.0</GroundSpeed>
+        <AirSpeed>1.0</AirSpeed>
+        <Armor>1.0</Armor>
+        <ROF>1.0</ROF>
+        <PointCost>1.0</PointCost>
+        <RechargeTime>1.0</RechargeTime>
+    </FACTION>
+    
+</Factions>
+
+<!-- 
+  ================================================================
+  UNIT STATISTICS
+  All Unit Statistics
+  ================================================================
+  -->
+  
+<UNITSTATISTICS>
+    <!-- Vehicles -->
+    <VEHICLE>
+        <ObjectId>NAC_HVY_TNK</ObjectId>
+        <InternalId>00001</InternalId>
+        <Name>NAC Heavy Tank</Name>
+        <OwnerName>NAC</OwnerName>
+        
+        <Speed>20</Speed>
+        <Acceleration>2</Acceleration>
+        <RotateRate>5</RotateRate>
+        <Tracked>true</Tracked>
+        <PointCost>500</PointCost>
+        <UnitHP>800</UnitHP>
+        <GraphicId>GFX_NAC_HEAVY_TANK</GraphicId>
+        
+        <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
+        <UnitTurret>
+            <InternalId>00002</InternalId>
+            <TurretId>NAC_HVY_TNK_MAIN_TURRET</TurretId>
+            <RelativeToID>00001</RelativeToID>
+            <TurretOffSetX>-10</TurretOffSetX>
+            <TurretOffsetY>0</TurretOffsetY>
+            <Weapon>130MM</Weapon> <!-- CAN HAVE MULTIPLE ITEMS -->
+        </UnitTurret>
+        <UnitTurret>
+            <InternalId>00003</InternalId>
+            <TurretId>NAC_HVY_TNK_MG_TURRET</TurretId>
+            <RelativeToID>00002</RelativeToID>
+            <TurretOffSetX>-35</TurretOffSetX>
+            <TurretOffsetY>0</TurretOffsetY>
+            <Weapon>30MM</Weapon>
+        </UnitTurret>        
+    </VEHICLE>
+    
+    <!-- Infantry -->
+    <INFANTRY>
+        <ObjectId>NAC_LGHT_INFTRY</ObjectId>
+        <Name>NAC Light Infantry</Name>
+        <OwnerName>NAC</OwnerName>
+        
+        <Speed>5</Speed>
+        <RotateRate>4</RotateRate>
+        <PointCost>200</PointCost>
+        <UnitHP>50</UnitHP>
+        
+        <AnimationStand>ANIM_NAC_LIGHT_INFANTRY_IDLE</AnimationStand>
+        <AnimationCrawl>ANIM_NAC_LIGHT_INFANTRY_CRAWL</AnimationCrawl>
+        <AnimationWalk>ANIM_NAC_LIGHT_INFANTRY_WALK</AnimationWalk>
+        <AnimationStandFire>ANIM_NAC_LIGHT_INFANTRY_FIRESTAND</AnimationStandFire>
+        <AnimationCrawlFire>ANIM_NAC_LIGHT_INFANTRY_FIRECRAWL</AnimationCrawlFire>
+        
+        <NumberPerUnit>5</NumberPerUnit>
+        <!-- How the formation of the group looks like -->
+        <SpreadPattern>GenericSpread</SpreadPattern>
+        <Weapon>M22Carbine</Weapon>
+        
+    </INFANTRY>
+    
+</UNITSTATISTICS>
+
+<!-- 
+  ================================================================
+  TURRET STATISTICS
+  All Turret Statistics
+  ================================================================
+  -->
+<TURRETSTATISTICS>
+
+   <TURRET>
+       <TurretId>NAC_HVY_TNK_MAIN_TURRET</TurretId>
+       <GraphicId>GFX_NAC_HVY_TNK_MAIN_TURRET</GraphicId>
+	   <WeaponOffSet>85#0#ANIM_NAC_HVY_GUN</WeaponOffSet>
+       <RotateRate>5</RotateRate>
+   </TURRET> 
+   
+   <TURRET>
+       <TurretId>NAC_HVY_TNK_MG_TURRET</TurretId>
+       <GraphicId>GFX_NAC_HVY_TNK_MG_TURRET</GraphicId>
+       <WeaponOffSet>14#0#ANIM_NAC_MG_GUN</WeaponOffSet>
+       <RotateRate>20</RotateRate>
+   </TURRET>    
+
+</TURRETSTATISTICS>
+
+<!-- 
+  ================================================================
+  WEAPON STATISTICS
+  All weapons Statistics
+  
+  
+  ================================================================
+  -->
+<WEAPONSTATISTICS>
+
+    <WEAPON>
+        <WeaponId>M22Carbine</WeaponId>
+        <Damage>5</Damage>
+        <TypeDamage>Light</TypeDamage>
+        <ROF>4</ROF>
+        <Range>100</Range>
+        <Speed>120</Speed>
+        <BallisticType>DirectLine</BallisticType>
+        <AnimatedGraphicsFireId>NONE</AnimatedGraphicsFireId> <!-- Should be done with soldier animation -->
+        <GraphicsBallisticId>GFX_CARBINE_PROJECTILE_IMAGE</GraphicsBallisticId>
+    </WEAPON>
+
+
+    <WEAPON>
+        <WeaponId>130MM</WeaponId>
+        <Damage>300</Damage>
+        <TypeDamage>AP</TypeDamage>
+        <ROF>40</ROF>
+        <Range>400</Range>
+        <Speed>120</Speed>
+        <BallisticType>DirectLine</BallisticType>
+        <AnimatedGraphicsFireId>ANIM_GFX_120MM_FIRE</AnimatedGraphicsFireId>
+        <GraphicsBallisticId>GFX_120MM_PROJECTILE_IMAGE</GraphicsBallisticId>
+    </WEAPON>
+
+    <WEAPON>
+        <WeaponId>30MM</WeaponId>
+        <Damage>10</Damage>
+        <TypeDamage>AP</TypeDamage>
+        <ROF>2</ROF>
+        <Range>400</Range>
+        <Speed>120</Speed>
+        <BallisticType>DirectLine</BallisticType>
+        <AnimatedGraphicsFireId>ANIM_GFX_30MM_FIRE</AnimatedGraphicsFireId>
+        <GraphicsBallisticId>GFX_30MM_PROJECTILE_IMAGE</GraphicsBallisticId>        
+    </WEAPON>   
+    
+</WEAPONSTATISTICS>
+
+
+<!-- 
+  ================================================================
+  ANIMATEDGRAPHICS
+  All animated graphics 
+  
+  
+  ================================================================
+  -->
+<ANIMATEDGRAPHICS>
+
+	<AnimationGraphics>
+		<NameId>ANIM_NAC_HVY_GUN</NameId>
+		<Height>10</Height>
+		<Width>80</Width>
+		<ImageBase>anim_gfx_nac_tnk_gun</ImageBase>
+		<ImageCount>5</ImageCount>
+	</AnimationGraphics>
+	
+	<AnimationGraphics>
+		<NameId>ANIM_NAC_MG_GUN</NameId>
+		<Height>38</Height>
+		<Width>35</Width>
+		<ImageBase>anim_gfx_nac_mg_gun</ImageBase>
+		<ImageCount>5</ImageCount>
+	</AnimationGraphics>	
+
+    <AnimationGraphics>
+        <NameId>ANIM_GFX_120MM_FIRE</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_120mm_fire</ImageBase>
+        <ImageCount>5</ImageCount>        
+    </AnimationGraphics>
+    
+    <AnimationGraphics>
+        <NameId>ANIM_GFX_30MM_FIRE</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_30mm_fire</ImageBase>
+        <ImageCount>5</ImageCount>        
+    </AnimationGraphics>
+   
+    <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_FIRESTAND</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>
+    <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_FIRECRAWL</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>        
+     <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_IDLE</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>       
+    <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_CRAWL</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>
+    <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_WALK</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>
+    
+    <AnimationGraphics>
+        <NameId>ANIM_NAC_LIGHT_INFANTRY_DEATH</NameId>
+        <Height>30</Height>
+        <Width>40</Width>
+        <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
+        <ImageCount>5</ImageCount>              
+    </AnimationGraphics>
+
+</ANIMATEDGRAPHICS>
+
+
+<!-- 
+  ================================================================
+  GRAPHICS
+  All static graphics 
+  
+  
+  ================================================================
+  -->
+<GRAPHICSTATIC>
+
+    <Graphics>
+        <NameId>GFX_120MM_PROJECTILE_IMAGE</NameId>
+        <Height>10</Height>
+        <Width>20</Width>
+        <Image>gfx_120mm_projectile</Image>
+    </Graphics>    
+    
+    <Graphics>
+        <NameId>GFX_30MM_PROJECTILE_IMAGE</NameId>
+        <Height>10</Height>
+        <Width>20</Width>
+        <Image>gfx_30mm_projectile</Image>
+    </Graphics>        
+    
+
+    <Graphics>
+        <NameId>GFX_NAC_HEAVY_TANK</NameId>
+        <Height>99</Height>
+        <Width>163</Width>
+        <Image>nac_heavy_tank_chasis</Image>
+    </Graphics>
+ 
+    <Graphics>
+        <NameId>GFX_NAC_HVY_TNK_MAIN_TURRET</NameId>
+        <Height>99</Height>
+        <Width>115</Width>
+        <Image>nac_heavy_tank_turret</Image>
+    </Graphics>
+    
+    <Graphics>
+        <NameId>GFX_NAC_HVY_TNK_MG_TURRET</NameId>
+        <Height>30</Height>
+        <Width>30</Width>
+        <Image>nac_heavy_tank_mg_turret</Image>
+    </Graphics>       
+    
+</GRAPHICSTATIC>
+
+</RULES>

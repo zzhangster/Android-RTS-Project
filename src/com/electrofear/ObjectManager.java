@@ -21,7 +21,8 @@ public class ObjectManager extends BaseObject{
         return mObjectList;
     }
     
-    public void update(float secondsDelta, BaseObject parent) {
+    @Override
+	public void update(float secondsDelta, BaseObject parent) {
         // TODO Auto-generated method stub
         
         for (int i = 0; i < mObjectList.size(); i++){
@@ -43,6 +44,15 @@ public class ObjectManager extends BaseObject{
         // TODO Auto-generated method stub
         mPendingAdditions.add(object);
         mObjectList.add(object);
+    }
+    
+    public void addByPriority(BaseObject object) {
+        if (mObjectList.size() == 0){
+            mObjectList.add(object);
+        }
+        else {
+            //Check priority and add it accordingly
+        }
     }
     
     

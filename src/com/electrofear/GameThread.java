@@ -9,7 +9,6 @@ public class GameThread implements Runnable{
     private ObjectManager mGameRoot;
     private GameRenderer mRenderer;
     
-    @Override
     public void run() {
         // TODO Auto-generated method stub
         mFinished = false;
@@ -18,7 +17,7 @@ public class GameThread implements Runnable{
             
             if (mGameRoot != null) {
                 //Wait for Rendering Thread to Finish
-                mRenderer.waitDrawingComplete();                
+                mRenderer.checkRenderingIsFinshed();                
                 final long time = SystemClock.uptimeMillis();
                 final long timeDelta = time - mLastTime;
                 long finalDelta = timeDelta;

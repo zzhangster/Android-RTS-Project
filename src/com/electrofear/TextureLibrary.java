@@ -15,7 +15,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
-import android.util.Log;
 
 public class TextureLibrary {
     public static int TEXTURE_SIZE = 1024;

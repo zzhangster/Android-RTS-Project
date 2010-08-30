@@ -1,11 +1,9 @@
 package com.electrofear;
 
-import java.util.Vector;
-
 
 public class RenderComponent extends BaseObject {
     private DrawableObject mDrawable;
-    private int mPriority;
+    private int mPriority = 0;
     private boolean mCameraRelative;
     private Vector2 mPositionWorkspace;
     private Vector2 mScreenLocation;
@@ -31,7 +29,8 @@ public class RenderComponent extends BaseObject {
     
 
 
-    public void update(float timeDelta, BaseObject parent) {
+    @Override
+	public void update(float timeDelta, BaseObject parent) {
         if (mDrawable != null) {
             RenderSystem system = BaseObject.renderSystem;
             if (system != null) {

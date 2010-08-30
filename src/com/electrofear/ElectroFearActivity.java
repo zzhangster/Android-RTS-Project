@@ -1,31 +1,18 @@
 package com.electrofear;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.List;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-
 import android.opengl.GLSurfaceView;
 import com.electrofear.Game;
 
 import android.app.Activity;
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.animation.AnimationUtils;
 
 /* Core Activity that main menu or other path will call to start game engine
  * This will create Game object, the game object will handle gamethreads
@@ -36,7 +23,8 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
     private Game myGame;
 
     
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
@@ -106,10 +94,10 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
             DocumentBuilder builder = factory.newDocumentBuilder();
             
             //Parse Tank Data
-            InputStream in = this.getResources().openRawResource(R.raw.tank_object_properties); 
+            InputStream in = this.getResources().openRawResource(R.raw.rules); 
             Document dom = builder.parse(in);
-            XMLParser.parseByType(XMLParser.ParserType.VEHICLE, dom);
-
+            XMLParser.startParsing(dom);
+            
             //Parse Infantry Data
             
 
@@ -121,31 +109,32 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
 
 
     
-    protected void onResume() {
+    @Override
+	protected void onResume() {
         super.onResume();
         myGLSurfaceView.onResume();
         myGame.onResume();
     }
     
-    protected void onPause() {
+    @Override
+	protected void onPause() {
         super.onPause();
         myGLSurfaceView.onPause();
         myGame.onPause();
     }
     
-    protected void onDestroy(){
+    @Override
+	protected void onDestroy(){
         
     }
     
     
     
-    @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
     public void onSensorChanged(SensorEvent event) {
         // TODO Auto-generated method stub
         

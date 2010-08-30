@@ -1,8 +1,10 @@
 package com.electrofear;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+
+import com.electrofear.parser.GlobalParsedXMLDataRepository;
+
 
 
 /* All objects must inherit from this object - this will have a static object registery */
@@ -16,8 +18,8 @@ public class BaseObject {
     
     //public static CameraMainSystem cameraSystem; // CameraSystem
     public static CollisionMainSystem collisionSystem; // Collision System
-    public static ContextParameters contextParameters; //GLOBAL VALUES FOR SYSTEM
-    
+    public static ContextParameters contextParameters = new ContextParameters(); //GLOBAL VALUES FOR SYSTEM
+    public static GlobalParsedXMLDataRepository contextGlobalXMLData = new GlobalParsedXMLDataRepository();
     
     public static Map globalUnitObjData = new TreeMap();
 
@@ -36,7 +38,17 @@ public class BaseObject {
     public static LevelBuilder levelBuilder = new LevelBuilder();
 
     public static DrawableFactory drawableFactory = new DrawableFactory();
+    public static GlobalWorldObjectRegister globalWorldRegister = new GlobalWorldObjectRegister();
+    
+    
+    
+    //ALL GLOBAL SETTINGS FOR GAME - SHADOW SETTINGS
+    public static boolean drawShadow = true;
+    public static Vector2 directionShadow = new Vector2(-20f, 10f);
+    public static float heightShadow = 15f;
+    
 
+    
     public void update(float timeDelta, BaseObject parent) {
         // TODO Auto-generated method stub
         

@@ -1,7 +1,5 @@
 package com.electrofear;
 
-import javax.microedition.khronos.opengles.GL10;
-
 public class Texture {
     public int hashID; //holds the id to refer to in TextureLibrary (this is set by Texture Library)
     public int rawResourceId; // Holds the actual R.drawable.stuff id's

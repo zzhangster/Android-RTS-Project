@@ -3,14 +3,14 @@ package com.electrofear;
 
 
 public class RenderSystem {
-    private ObjectManager[] mRenderQueues;
+    private OrderedRenderObjectManager[] mRenderQueues;
     private int renderQueueIndex = 0;//current render queue
     private int TOTALQUEUE = 2;
     
     public RenderSystem(){
-        mRenderQueues = new ObjectManager[TOTALQUEUE];
+        mRenderQueues = new OrderedRenderObjectManager[TOTALQUEUE];
         for (int i = 0; i < TOTALQUEUE; i++){
-            mRenderQueues[i] = new ObjectManager();
+            mRenderQueues[i] = new OrderedRenderObjectManager();
         }
     }
     
@@ -26,7 +26,8 @@ public class RenderSystem {
         mRenderQueues[renderQueueIndex].clear();
     }
     public void scheduleForDraw(BaseObject object){
-        //TODO change positionX and positionY to vector class
+        //TO DO, schedule objects based on
+        //Add objects to end, if priority is zero, else more
         mRenderQueues[renderQueueIndex].add(object);
     }    
 

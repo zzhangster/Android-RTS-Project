@@ -127,8 +127,8 @@ public class ElectroFearMainActivity extends Activity {
         
         /*-- Start All Frame Animations --*/
         for(int i = 0; i < mAnimation.size(); i++) {
-            if (!((AnimationDrawable)mAnimation.get(i)).isRunning()) {
-                ((AnimationDrawable)mAnimation.get(i)).start();
+            if (!(mAnimation.get(i)).isRunning()) {
+                (mAnimation.get(i)).start();
             }
         }
     }
