@@ -54,8 +54,10 @@ public class CameraMainSystem extends BaseObject{
 		} else {
 			if (cameraPosition.y + changeCameraY > centerBoundaryY + boundaryHeight * 1/4){
 				cameraPosition.y = centerBoundaryY + boundaryHeight * 1/4;
+				cameraLookAt.y = centerBoundaryY + boundaryHeight * 1/4;
 			} else if (cameraPosition.y + changeCameraY < centerBoundaryY - boundaryHeight * 1/4){
 				cameraPosition.y = centerBoundaryY - boundaryHeight * 1/4;
+				cameraLookAt.y = centerBoundaryY - boundaryHeight * 1/4;
 			}
 		}
 		
