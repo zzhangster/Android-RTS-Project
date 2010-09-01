@@ -14,7 +14,7 @@ public class LevelSystem {
         // TODO Auto-generated method stub
         ObjectManager root = BaseObject.contextParameters.gameRoot;
         LevelBuilder builder = BaseObject.levelBuilder; // for experimenting
-        mBackgroundObject = builder.buildBackground(0,330,486); // Replace with real values
+        mBackgroundObject = builder.buildBackground(0,330,972); // Replace with real values
         root.add(mBackgroundObject);
         
         

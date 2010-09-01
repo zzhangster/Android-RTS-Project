@@ -52,8 +52,8 @@ public class GlobalWorldObjectRegister {
 			temp = worldGameObjectTracker.get(i);
 			currentX = current.getPosition().x;
 			currentY = current.getPosition().y;
-			targetX = current.getPosition().x;
-			targetY = current.getPosition().y;
+			targetX = temp.getPosition().x;
+			targetY = temp.getPosition().y;
 			if (current != temp){
 				
 				if (criteria.equalsIgnoreCase("ALL")) {

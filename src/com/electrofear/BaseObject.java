@@ -34,7 +34,7 @@ public class BaseObject {
     //List of Systems
     public static RenderSystem renderSystem = new RenderSystem();
     public static LevelSystem levelSystem = new LevelSystem();
-    public static CameraSystem cameraSystem = new CameraSystem();
+    public static CameraMainSystem cameraSystem = new CameraMainSystem();
     public static LevelBuilder levelBuilder = new LevelBuilder();
 
     public static DrawableFactory drawableFactory = new DrawableFactory();

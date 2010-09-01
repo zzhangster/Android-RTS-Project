@@ -153,7 +153,7 @@
         <Damage>300</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>40</ROF>
-        <Range>400</Range>
+        <Range>20</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_120MM_FIRE</AnimatedGraphicsFireId>
@@ -165,7 +165,7 @@
         <Damage>10</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>2</ROF>
-        <Range>400</Range>
+        <Range>10</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_30MM_FIRE</AnimatedGraphicsFireId>

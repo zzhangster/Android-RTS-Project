@@ -40,6 +40,9 @@ public class GameRenderer implements GLSurfaceView.Renderer{
     }
 
     public void onDrawFrame(GL10 gl) {
+    	Vector3 cameraPosition,cameraLookAt;
+    	
+    	
         long time = SystemClock.uptimeMillis();
         long time_delta = (time - mLastTime);
         
@@ -52,11 +55,14 @@ public class GameRenderer implements GLSurfaceView.Renderer{
             gl.glDisable(GL10.GL_DEPTH_TEST);   //Turn Depth Testing Off            
             gl.glColor4x(0x10000, 0x10000, 0x10000, 0x10000);
             
+            //GET Camera Coordinates
+            cameraPosition = BaseObject.cameraSystem.getCameraPosition();
+            cameraLookAt = BaseObject.cameraSystem.getCameraLookAt();
             
             gl.glLoadIdentity();                    //Reset The Current Modelview Matrix
             GLU.gluLookAt(gl, 
-                          0, 0, 600, 
-                          0, 0, 0,
+                          cameraPosition.x, cameraPosition.y, cameraPosition.z, 
+                          cameraLookAt.x, cameraLookAt.y, cameraLookAt.z,
                           0, 1, 0);
           
             if (mDrawQueue != null) {

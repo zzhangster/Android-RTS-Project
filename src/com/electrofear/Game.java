@@ -2,9 +2,12 @@ package com.electrofear;
 
 import javax.microedition.khronos.opengles.GL10;
 
+
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 
 
 public class Game {
@@ -19,6 +22,9 @@ public class Game {
     private boolean mRunning;
     private boolean mBootstrapComplete;    
     private boolean mGLDataLoaded;
+    
+    //Controls
+    private float firstTouchX, firstTouchY;
 
     
     public Game() {
@@ -81,7 +87,7 @@ public class Game {
         start();
     }
     
-    public Renderer getRenderer() {
+    public GameRenderer getRenderer() {
         // TODO Auto-generated method stub
         return mRenderer;
     }
@@ -95,6 +101,53 @@ public class Game {
             mGLDataLoaded = true;
           
     }
+
+    public boolean onTrackballEvent(MotionEvent event) {
+    	//TRACK BALL??? REALLY?  WHO USES TRACKBALL THESE DAYS?   JESUS, BUY A NEW PHONE ALREADY!   KTHNXBAI!
+        return true;
+    }
+    
+    public boolean onOrientationEvent(float x, float y, float z) {
+    	//LOL MAYBE NOT USED HERE!
+        return true;
+    }
+    
+    public boolean onTouchEvent(MotionEvent event) {
+    	int action = event.getAction();
+    	
+    	float currentX,currentY,diffX,diffY;
+    	
+    	if (action == MotionEvent.ACTION_DOWN) {
+    		firstTouchX = event.getRawX();
+    		firstTouchY = event.getRawY();
+    	} else if (action == MotionEvent.ACTION_MOVE) {
+    		currentX = event.getRawX();
+    		currentY = event.getRawY();
+    		
+    		diffX = currentX - firstTouchX;
+    		diffY = currentY - firstTouchY;
+    		//Find difference and update CameraPosition, NOTE NO DIFFX AT THIS TIME!
+    		BaseObject.cameraSystem.updateDeltaChangeCoords(0, diffY, 0, 0, diffY, 0);
+    		firstTouchX = currentX;
+    		firstTouchY = currentY;
+    		
+    	} else if (action == MotionEvent.ACTION_UP) {
+ 		
+    	}
+    	
+        return true;
+    }
+    
+    public boolean onKeyDownEvent(int keyCode) {
+    	// 
+        return true;
+    }
+    
+    public boolean onKeyUpEvent(int keyCode) {
+
+        return true;
+    }
+    
     public void onPause() {
         // TODO Auto-generated method stub
         

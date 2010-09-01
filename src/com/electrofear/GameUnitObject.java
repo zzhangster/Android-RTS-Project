@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GameUnitObject extends GameObject {
     private float zAxis;
     private float height, width;
-    private float angle;
+    private float angle, defaultAngle;
     private float turnRate; //angle per second
     private float relativeX, relativeY; //relative to parent
     private float calculatedX, calculatedY;
@@ -42,6 +42,7 @@ public class GameUnitObject extends GameObject {
         this.calculatedX = 0;
         this.calculatedY = 0;
         angle = inputAngle;
+        defaultAngle = inputAngle; //APPLIES TO TURRET ONLY IN THIS CASE
         mDrawable = inputDrawable;
         zAxis = inputZAxis;
         this.angleRelativeToParent = angleRelativeToParent;
@@ -56,6 +57,10 @@ public class GameUnitObject extends GameObject {
 
     public float getAngle(){
     	return this.angle;
+    }
+    
+    public float getDefaultAngle(){
+    	return this.defaultAngle;
     }
     
     //ADDS OJBECT BY INTERNAL ID, ALSO CHANGES THE Z-AXIS with Z-AXIS+1
@@ -110,6 +115,9 @@ public class GameUnitObject extends GameObject {
             float calculatingX = this.relativeX;
             float calculatingY = this.relativeY;
             float currentAngle = this.angle;
+            
+            //For TURRETS and OTHERS, DEFAULT ANGLE WILL ALWAYS BE relative to parent; (SHARE THE PARENT ANGLE)
+            this.defaultAngle = this.mParent.getAngle();
          
             //do rotation calculation, if true base angle off parent, else use your own
             if (angleRelativeToParent){

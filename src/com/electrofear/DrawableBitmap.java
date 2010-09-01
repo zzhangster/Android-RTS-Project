@@ -112,7 +112,7 @@ public class DrawableBitmap extends DrawableObject{
         
         //END OF DRAWING STUFF HERE
         gl.glBindTexture(GL10.GL_TEXTURE_2D, drawableBitMapTexture.nameId); //nameId is textureID for opengl
-        if (centerBasedOnImage){
+        //if (centerBasedOnImage){
             
             //SetupCoordinates and such
             //
@@ -168,9 +168,9 @@ public class DrawableBitmap extends DrawableObject{
 
                         
             gl.glPopMatrix();
-        } else {
-            ((GL11Ext) gl).glDrawTexfOES(xPosition, yPosition, 0, width, height);
-        }
+        //} else {
+        //    ((GL11Ext) gl).glDrawTexfOES(xPosition, yPosition, 0, width, height);
+        //}
         
         /*gl.glDisable(GL10.GL_BLEND);
         gl.glMatrixMode(GL10.GL_PROJECTION);

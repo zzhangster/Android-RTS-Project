@@ -48,7 +48,7 @@ public class AISubAttackComponent extends BaseObject{
 		
 		//TEST GET FIRST OBJECT AND IF RANGE MOVE TURRET TO POINT AT IT
 		float controlPointX,controlPointy,targetX,targetY;
-		float targetAngle,currentAngle;
+		float targetAngle,currentAngle,diffAngle;
 		
 		
 		currentAngle = controlPoint.getAngle(); //GET CURRENT ANGLE
@@ -62,7 +62,7 @@ public class AISubAttackComponent extends BaseObject{
 			
 			float diffX = targetPosition.x - controlPosition.x;
 			float diffY = targetPosition.y - controlPosition.y;
-			float diffAngle;
+			
 			
 			if (diffX == 0f) {
 				if (diffY > 0f){
@@ -79,27 +79,30 @@ public class AISubAttackComponent extends BaseObject{
 				}
 			}
 			targetAngle %= 360f;
-			
-			diffAngle = targetAngle - currentAngle;
-			//Swivel Turret to Target, based on controlPoint rate of turn and current/target angle;
-			if ( diffAngle > 0) {
-				//Prevent shaky turret
-				if ( Math.abs(diffAngle) >  turretProperties.rotateRate * timeDelta) {
-					currentAngle += (turretProperties.rotateRate * timeDelta);
-				} else {
-					currentAngle = targetAngle;
-				}
-			} else if ( diffAngle < 0) {
-				if ( Math.abs(diffAngle) >  turretProperties.rotateRate * timeDelta) {
-					currentAngle -= (turretProperties.rotateRate * timeDelta);
-				} else {
-					currentAngle = targetAngle;
-				}
+		} else {
+			//IF NOTHING IS FOUND, MOVE TURRENT BACK TO DEFAULT ANGLE
+			targetAngle = controlPoint.getDefaultAngle();
+		}
+		
+		//FOUND TARGET ANGLE, NOT FOR THE FUN PART
+		diffAngle = targetAngle - currentAngle;
+		//Swivel Turret to Target, based on controlPoint rate of turn and current/target angle;
+		if ( diffAngle > 0) {
+			//Prevent shaky turret
+			if ( Math.abs(diffAngle) >  turretProperties.rotateRate * timeDelta) {
+				currentAngle += (turretProperties.rotateRate * timeDelta);
 			} else {
 				currentAngle = targetAngle;
 			}
-			
-		}
+		} else if ( diffAngle < 0) {
+			if ( Math.abs(diffAngle) >  turretProperties.rotateRate * timeDelta) {
+				currentAngle -= (turretProperties.rotateRate * timeDelta);
+			} else {
+				currentAngle = targetAngle;
+			}
+		} else {
+			currentAngle = targetAngle;
+		}		
 		
 		controlPoint.setAngle(currentAngle);
 	}

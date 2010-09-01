@@ -13,6 +13,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 
 /* Core Activity that main menu or other path will call to start game engine
  * This will create Game object, the game object will handle gamethreads
@@ -21,7 +22,7 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
 
     private GLSurfaceView myGLSurfaceView;
     private Game myGame;
-
+    private float mLastTouchTime = 0;
     
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,24 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
         
     }
     
-    
+    public boolean onTouchEvent(MotionEvent event) {
+    	//if (!myGame.isPaused()) {
+    	myGame.onTouchEvent(event);
+	    	
+	        final long time = System.currentTimeMillis();
+	        if (event.getAction() == MotionEvent.ACTION_MOVE && time - mLastTouchTime < 32) {
+		        try {
+		            Thread.sleep(32);
+		        } catch (InterruptedException e) {
+		            
+		        }
+		        //Locking rendering thread
+		        myGame.getRenderer().checkRenderingIsFinshed();
+	        }
+	        mLastTouchTime = time;
+    	//}
+        return true;
+    }    
     
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // TODO Auto-generated method stub

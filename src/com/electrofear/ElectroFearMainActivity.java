@@ -49,7 +49,9 @@ public class ElectroFearMainActivity extends Activity {
         public void onClick(View v) {
         	
         }
-    };      
+    };   
+    
+    
     
     /** Called when the activity is first created. */
     @Override

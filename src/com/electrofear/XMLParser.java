@@ -99,9 +99,8 @@ public class XMLParser {
 	                tempTurretParserObj.weapon.add(weaponElement.getNodeValue());
 	                String testing = "coocoo";
                 }*/
-                for (int k = 0; k < element.getElementsByTagName("Weapon").getLength(); k++){
-                    tempTurretParserObj.weapon.add(element.getElementsByTagName("Weapon").item(k).getFirstChild().getNodeValue());
-                    String testing = "coocoo";
+                for (int k = 0; k < turretElement.getElementsByTagName("Weapon").getLength(); k++){
+                    tempTurretParserObj.weapon.add(turretElement.getElementsByTagName("Weapon").item(k).getFirstChild().getNodeValue());
                 }                
                 tempVehicleParserObj.addTurret(tempTurretParserObj);                
             }
