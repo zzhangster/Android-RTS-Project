@@ -50,7 +50,13 @@ public class CameraMainSystem extends BaseObject{
 			
 			cameraLookAt.set(cameraLookAt.x + changeLookAtX, 
 							 cameraLookAt.y + changeLookAtY,
-						 cameraLookAt.z + changeLookAtZ);
+							 cameraLookAt.z + changeLookAtZ);
+		} else {
+			if (cameraPosition.y + changeCameraY > centerBoundaryY + boundaryHeight * 1/4){
+				cameraPosition.y = centerBoundaryY + boundaryHeight * 1/4;
+			} else if (cameraPosition.y + changeCameraY < centerBoundaryY - boundaryHeight * 1/4){
+				cameraPosition.y = centerBoundaryY - boundaryHeight * 1/4;
+			}
 		}
 		
 	}
