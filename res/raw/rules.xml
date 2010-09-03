@@ -85,6 +85,31 @@
         </UnitTurret>        
     </VEHICLE>
     
+    <VEHICLE>
+        <ObjectId>NAC_SCOUT_JEEP</ObjectId>
+        <InternalId>00001</InternalId>
+        <Name>NAC Scout Jeep</Name>
+        <OwnerName>NAC</OwnerName>
+        
+        <Speed>20</Speed>
+        <Acceleration>2</Acceleration>
+        <RotateRate>5</RotateRate>
+        <Tracked>true</Tracked>
+        <PointCost>300</PointCost>
+        <UnitHP>200</UnitHP>
+        <GraphicId>GFX_NAC_SCOUT_JEEP</GraphicId>
+        
+        <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
+        <UnitTurret>
+            <InternalId>00001</InternalId>
+            <TurretId>NAC_SCOUT_JEEP_TURRET</TurretId>
+            <RelativeToID>00001</RelativeToID>
+            <TurretOffSetX>-10</TurretOffSetX>
+            <TurretOffsetY>0</TurretOffsetY>
+            <Weapon>30MM</Weapon> <!-- CAN HAVE MULTIPLE ITEMS -->
+        </UnitTurret>       
+    </VEHICLE>    
+    
     <!-- Infantry -->
     <INFANTRY>
         <ObjectId>NAC_LGHT_INFTRY</ObjectId>
@@ -305,6 +330,13 @@
         <Width>163</Width>
         <Image>nac_heavy_tank_chasis</Image>
     </Graphics>
+    
+    <Graphics>
+        <NameId>GFX_NAC_SCOUT_JEEP</NameId>
+        <Height>99</Height>
+        <Width>163</Width>
+        <Image>nac_scout_jeep_chasis</Image>
+    </Graphics>    
  
     <Graphics>
         <NameId>GFX_NAC_HVY_TNK_MAIN_TURRET</NameId>
@@ -312,6 +344,13 @@
         <Width>115</Width>
         <Image>nac_heavy_tank_turret</Image>
     </Graphics>
+    
+    <Graphics>
+        <NameId>GFX_NAC_SCOUT_JEEP_TURRET</NameId>
+        <Height>99</Height>
+        <Width>115</Width>
+        <Image>nac_scout_jeep_turret</Image>
+    </Graphics>    
     
     <Graphics>
         <NameId>GFX_NAC_HVY_TNK_MG_TURRET</NameId>

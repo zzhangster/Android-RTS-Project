@@ -103,7 +103,7 @@ public class Game {
     }
 
     public boolean onTrackballEvent(MotionEvent event) {
-    	//TRACK BALL??? REALLY?  WHO USES TRACKBALL THESE DAYS?   JESUS, BUY A NEW PHONE ALREADY!   KTHNXBAI!
+    	//HMMM TRACKBALL MAY BE USEFUL... I'll TAKE THAT BACK ROFL
         return true;
     }
     

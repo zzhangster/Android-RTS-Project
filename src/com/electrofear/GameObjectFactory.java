@@ -191,6 +191,40 @@ public class GameObjectFactory extends BaseObject {
         return nacHeavyTankObjManager;
     }
 
+    
+    //SPAWNS LIGHT JEEP
+    private GameObject spawnNACScoutJeep(float x, float y, float ratio, boolean testingTOBEREMOVED) {
+        // A method to create heavy tank
+        // Create a two animation component for treads or one
+        // Create one base render component (hull)
+        // Create one render component (turret/MAINGUN)
+        // Create one render component (turrent MG)
+
+        GameObject nacHeavyTankObjManager = new GameObject();
+        nacHeavyTankObjManager.setPosition(x, y);
+        nacHeavyTankObjManager.setFaction("NACTEST");
+        nacHeavyTankObjManager.setMovable(testingTOBEREMOVED);
+        
+        
+        
+        
+        //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
+        //COMPONENTS FOR ANY TURRETS AVALIABLE
+        spawnTrackedVehicleComponents(nacHeavyTankObjManager, "NAC_SCOUT_JEEP", 90);
+        
+        
+        //CREATES MOVEMENT
+        
+        //CREATE MAIN AI
+        
+        //CREATE MAIN
+        
+        //REGISTER TO WORLD
+        BaseObject.globalWorldRegister.registerToGlobalRegistry(nacHeavyTankObjManager);
+        
+        return nacHeavyTankObjManager;
+    }    
+    
     /* autoSpawnVehicle
      * ===============================================================
      * Adds chasis and turrets, vehicleId matches XML, EX: NAC_HVY_TNK
