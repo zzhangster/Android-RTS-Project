@@ -74,7 +74,10 @@ public class AISubAttackComponent extends BaseObject{
 			} else {
 				targetAngle = (float) Math.toDegrees((float) Math.atan(diffY/diffX));
 				
+				//ANGLE OFFSET
 				if (diffY < 0){
+					targetAngle += 180f;
+				} else if (diffX < 0 && diffY > 0) {
 					targetAngle += 180f;
 				}
 			}

@@ -57,15 +57,15 @@ public class GlobalWorldObjectRegister {
 			if (current != temp){
 				
 				if (criteria.equalsIgnoreCase("ALL")) {
-					if (calculateDistance(currentX, targetX, currentY, targetY) <= range){
+					if (calculateDistance(currentX, currentY, targetX, targetY) <= range){
 						returnList.add(temp);
 					}
 				} else if (criteria.equalsIgnoreCase("ALLIED") && current.faction.equalsIgnoreCase(temp.faction)) {
-					if (calculateDistance(currentX, targetX, currentY, targetY) <= range){
+					if (calculateDistance(currentX, currentY, targetX, targetY) <= range){
 						returnList.add(temp);
 					}
 				} else if (criteria.equalsIgnoreCase("HOSTILE") && !current.faction.equalsIgnoreCase(temp.faction)) {
-					if (calculateDistance(currentX, targetX, currentY, targetY) <= range){
+					if (calculateDistance(currentX, currentY, targetX, targetY) <= range){
 						returnList.add(temp);
 					}					
 				}

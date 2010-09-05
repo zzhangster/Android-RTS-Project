@@ -122,7 +122,7 @@ public class GameObjectFactory extends BaseObject {
                 newObject = spawnNACHeavyTank(x,y,1, testingTOBEREMOVED);
                 break;
             case NACSCOUT:
-                newObject = spawnNACScout(x,y);
+                newObject = spawnNACScoutJeep(x,y,1, testingTOBEREMOVED);
                 break;
             case NACAFV:
                 newObject = spawnNACAFV(x,y);
@@ -133,18 +133,6 @@ public class GameObjectFactory extends BaseObject {
         return newObject;
     }
 
-    private GameObject spawnNACScout(float x, float y){
-        GameObject nacScoutObj = new GameObject();
-        nacScoutObj.setPosition(x, y);
-        
-        RenderComponent nacScoutObjRenderer = new RenderComponent();
-        int nacScoutImage = R.drawable.nac_scout_jeep_test;
-        DrawableBitmap nacScoutDrawable = new DrawableBitmap(x, y, 51, 74, 1, 1, BaseObject.mapLibrary.addTextureToLibrary(nacScoutImage));
-        nacScoutObjRenderer.setDrawable(nacScoutDrawable);
-        nacScoutObj.add(nacScoutObjRenderer); 
-        
-        return nacScoutObj;
-    }
     
     private GameObject spawnNACAFV(float x, float y){
         GameObject nacAFVObj = new GameObject();
@@ -169,6 +157,7 @@ public class GameObjectFactory extends BaseObject {
         GameObject nacHeavyTankObjManager = new GameObject();
         nacHeavyTankObjManager.setPosition(x, y);
         nacHeavyTankObjManager.setFaction("NACTEST");
+        nacHeavyTankObjManager.setObjectId("TANK");
         nacHeavyTankObjManager.setMovable(testingTOBEREMOVED);
         
         
@@ -200,17 +189,18 @@ public class GameObjectFactory extends BaseObject {
         // Create one render component (turret/MAINGUN)
         // Create one render component (turrent MG)
 
-        GameObject nacHeavyTankObjManager = new GameObject();
-        nacHeavyTankObjManager.setPosition(x, y);
-        nacHeavyTankObjManager.setFaction("NACTEST");
-        nacHeavyTankObjManager.setMovable(testingTOBEREMOVED);
+        GameObject nacScoutJeepManager = new GameObject();
+        nacScoutJeepManager.setPosition(x, y);
+        nacScoutJeepManager.setFaction("NACTEST");
+        nacScoutJeepManager.setObjectId("JEEP");
+        nacScoutJeepManager.setMovable(testingTOBEREMOVED);
         
         
         
         
         //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
         //COMPONENTS FOR ANY TURRETS AVALIABLE
-        spawnTrackedVehicleComponents(nacHeavyTankObjManager, "NAC_SCOUT_JEEP", 90);
+        spawnTrackedVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", 90);
         
         
         //CREATES MOVEMENT
@@ -220,9 +210,9 @@ public class GameObjectFactory extends BaseObject {
         //CREATE MAIN
         
         //REGISTER TO WORLD
-        BaseObject.globalWorldRegister.registerToGlobalRegistry(nacHeavyTankObjManager);
+        BaseObject.globalWorldRegister.registerToGlobalRegistry(nacScoutJeepManager);
         
-        return nacHeavyTankObjManager;
+        return nacScoutJeepManager;
     }    
     
     /* autoSpawnVehicle
@@ -258,7 +248,7 @@ public class GameObjectFactory extends BaseObject {
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_shadow", "drawable", "com.electrofear");
         
         
-        GameUnitObject baseObjVehicleChasis = new GameUnitObject( "nacHeavyTankChasis",
+        GameUnitObject baseObjVehicleChasis = new GameUnitObject( vehicleId,
         													globalTankProperties.internalId,
         													"",
                                                             (float)globalTankGraphicProperties.width, 

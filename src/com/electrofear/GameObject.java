@@ -21,6 +21,7 @@ public class GameObject extends ObjectManager {
     
     //Properites
     public String faction;
+    public String objectId;
     public float hitPoints;
     
     public boolean TOBEREMOVED;
@@ -50,4 +51,10 @@ public class GameObject extends ObjectManager {
     public void setPosition(float x, float y){
         mPosition.set(x, y);
     }
+
+	public void setObjectId(String inputObjId) {
+		// TODO Auto-generated method stub
+		objectId = inputObjId;
+		
+	}
 }

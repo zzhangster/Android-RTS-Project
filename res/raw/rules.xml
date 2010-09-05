@@ -102,9 +102,9 @@
         <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
         <UnitTurret>
             <InternalId>00001</InternalId>
-            <TurretId>NAC_SCOUT_JEEP_TURRET</TurretId>
+            <TurretId>NAC_SCOUT_JEEP_MG_TURRET</TurretId>
             <RelativeToID>00001</RelativeToID>
-            <TurretOffSetX>-10</TurretOffSetX>
+            <TurretOffSetX>-28</TurretOffSetX>
             <TurretOffsetY>0</TurretOffsetY>
             <Weapon>30MM</Weapon> <!-- CAN HAVE MULTIPLE ITEMS -->
         </UnitTurret>       
@@ -156,7 +156,14 @@
        <GraphicId>GFX_NAC_HVY_TNK_MG_TURRET</GraphicId>
        <WeaponOffSet>14#0#ANIM_NAC_MG_GUN</WeaponOffSet>
        <RotateRate>20</RotateRate>
-   </TURRET>    
+   </TURRET>
+   
+   <TURRET>
+	   <TurretId>NAC_SCOUT_JEEP_MG_TURRET</TurretId>
+       <GraphicId>GFX_NAC_SCOUT_JEEP_MG_TURRET</GraphicId>
+       <WeaponOffSet>30#0#ANIM_NAC_SCOUT_MG_GUN</WeaponOffSet>
+       <RotateRate>20</RotateRate>   		
+   </TURRET>
 
 </TURRETSTATISTICS>
 
@@ -188,7 +195,7 @@
         <Damage>300</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>40</ROF>
-        <Range>120</Range>
+        <Range>300</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_120MM_FIRE</AnimatedGraphicsFireId>
@@ -200,7 +207,7 @@
         <Damage>10</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>2</ROF>
-        <Range>80</Range>
+        <Range>150</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_30MM_FIRE</AnimatedGraphicsFireId>
@@ -219,7 +226,16 @@
   ================================================================
   -->
 <ANIMATEDGRAPHICS>
-
+       
+       
+	<AnimationGraphics>
+		<NameId>ANIM_NAC_SCOUT_MG_GUN</NameId>
+		<Height>6</Height>
+		<Width>38</Width>
+		<ImageBase>anim_gfx_nac_scout_jeep_mg_gun</ImageBase>
+		<ImageCount>5</ImageCount>
+	</AnimationGraphics>       
+       
 	<AnimationGraphics>
 		<NameId>ANIM_NAC_HVY_GUN</NameId>
 		<Height>10</Height>
@@ -322,7 +338,7 @@
         <Width>20</Width>
         <Image>gfx_30mm_projectile</Image>
     </Graphics>        
-    
+       
 
     <Graphics>
         <NameId>GFX_NAC_HEAVY_TANK</NameId>
@@ -333,8 +349,8 @@
     
     <Graphics>
         <NameId>GFX_NAC_SCOUT_JEEP</NameId>
-        <Height>99</Height>
-        <Width>163</Width>
+        <Height>89</Height>
+        <Width>128</Width>
         <Image>nac_scout_jeep_chasis</Image>
     </Graphics>    
  
@@ -346,9 +362,9 @@
     </Graphics>
     
     <Graphics>
-        <NameId>GFX_NAC_SCOUT_JEEP_TURRET</NameId>
-        <Height>99</Height>
-        <Width>115</Width>
+        <NameId>GFX_NAC_SCOUT_JEEP_MG_TURRET</NameId>
+        <Height>38</Height>
+        <Width>36</Width>
         <Image>nac_scout_jeep_turret</Image>
     </Graphics>    
     

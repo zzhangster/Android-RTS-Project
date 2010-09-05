@@ -33,7 +33,10 @@ public class LevelSystem {
         root.add(mGameObject);
         
         mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACHEAVYTANK, -60, -110, false); //Generate NACSCOUT at position 30, 30
-        root.add(mGameObject);        
+        root.add(mGameObject);     
+        
+        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACSCOUT, 90, -110, false); //Generate NACSCOUT at position 30, 30
+        root.add(mGameObject);   
        
         //mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACWALKER, 190, 230); //Generate NACSCOUT at position 30, 30
         //root.add(mGameObject);
