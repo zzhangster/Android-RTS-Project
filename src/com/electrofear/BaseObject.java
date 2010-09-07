@@ -3,6 +3,7 @@ package com.electrofear;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.electrofear.level.GlobalLevelProperties;
 import com.electrofear.parser.GlobalParsedXMLDataRepository;
 
 
@@ -43,8 +44,9 @@ public class BaseObject {
     
     
     //ALL GLOBAL SETTINGS FOR GAME - SHADOW SETTINGS
+    public static GlobalLevelProperties globalLevelProperties = new GlobalLevelProperties();
     public static boolean drawShadow = true;
-    public static Vector2 directionShadow = new Vector2(-20f, 10f);
+    public static Vector2 directionShadow = new Vector2(-10f, -20f);
     public static float heightShadow = 15f;
     
 

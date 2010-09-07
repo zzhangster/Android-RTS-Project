@@ -349,7 +349,7 @@
     
     <Graphics>
         <NameId>GFX_NAC_SCOUT_JEEP</NameId>
-        <Height>89</Height>
+        <Height>93</Height>
         <Width>128</Width>
         <Image>nac_scout_jeep_chasis</Image>
     </Graphics>    
@@ -373,7 +373,42 @@
         <Height>30</Height>
         <Width>30</Width>
         <Image>nac_heavy_tank_mg_turret</Image>
-    </Graphics>       
+    </Graphics>
+
+    <Graphics>
+        <NameId>FAUNA_TREE_GROUP_LEFT_01</NameId>
+        <Height>178</Height>
+        <Width>576</Width>
+        <Image>gfx_tree_left_01</Image>
+    </Graphics>   
+    
+    <Graphics>
+        <NameId>FAUNA_TREE_GROUP_RIGHT_01</NameId>
+        <Height>178</Height>
+        <Width>576</Width>
+        <Image>gfx_tree_right_01</Image>
+    </Graphics>   
+    
+    <Graphics>
+        <NameId>ROAD_OVER_PASS_01</NameId>
+        <Height>464</Height>
+        <Width>216</Width>
+        <Image>gfx_over_pass_01</Image>
+    </Graphics>   
+    
+    <Graphics>
+        <NameId>ROAD_HOLO_BOARD_LEFT_01</NameId>
+        <Height>444</Height>
+        <Width>63</Width>
+        <Image>gfx_over_pass_sign_left</Image>
+    </Graphics>
+ 
+    <Graphics>
+        <NameId>ROAD_HOLO_BOARD_RIGHT_01</NameId>
+        <Height>444</Height>
+        <Width>63</Width>
+        <Image>gfx_over_pass_sign_right</Image>
+    </Graphics>                     
     
 </GRAPHICSTATIC>
 

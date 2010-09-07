@@ -41,8 +41,8 @@ public class CameraMainSystem extends BaseObject{
 		//Set Restrictions to Coordinates, check only Y here
 		//Keep it + changeCameraY in condition because it can be positive and negative!
 		//1/4 to compensate for current camera height
-		if (cameraPosition.y + changeCameraY < centerBoundaryY + boundaryHeight * 1/4 && 
-			cameraPosition.y + changeCameraY > centerBoundaryY - boundaryHeight * 1/4) {
+		if (cameraPosition.y + changeCameraY < centerBoundaryY + boundaryHeight * 1/2 && 
+			cameraPosition.y + changeCameraY > centerBoundaryY - boundaryHeight * 1/2) {
 			
 			cameraPosition.set(cameraPosition.x + changeCameraX, 
 							   cameraPosition.y + changeCameraY,
@@ -52,12 +52,12 @@ public class CameraMainSystem extends BaseObject{
 							 cameraLookAt.y + changeLookAtY,
 							 cameraLookAt.z + changeLookAtZ);
 		} else {
-			if (cameraPosition.y + changeCameraY > centerBoundaryY + boundaryHeight * 1/4){
-				cameraPosition.y = centerBoundaryY + boundaryHeight * 1/4;
-				cameraLookAt.y = centerBoundaryY + boundaryHeight * 1/4;
-			} else if (cameraPosition.y + changeCameraY < centerBoundaryY - boundaryHeight * 1/4){
-				cameraPosition.y = centerBoundaryY - boundaryHeight * 1/4;
-				cameraLookAt.y = centerBoundaryY - boundaryHeight * 1/4;
+			if (cameraPosition.y + changeCameraY > centerBoundaryY + boundaryHeight * 1/2){
+				cameraPosition.y = centerBoundaryY + boundaryHeight * 1/2;
+				cameraLookAt.y = centerBoundaryY + boundaryHeight * 1/2;
+			} else if (cameraPosition.y + changeCameraY < centerBoundaryY - boundaryHeight * 1/2){
+				cameraPosition.y = centerBoundaryY - boundaryHeight * 1/2;
+				cameraLookAt.y = centerBoundaryY - boundaryHeight * 1/2;
 			}
 		}
 		

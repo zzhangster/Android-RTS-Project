@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.electrofear.level.GlobalLevelProperties;
 import com.electrofear.parser.GlobalDataFaction;
 import com.electrofear.parser.GlobalDataGraphic;
 import com.electrofear.parser.GlobalDataGraphicAnimation;
@@ -15,6 +16,8 @@ import com.electrofear.parser.GlobalDataUnitSubTurretData;
 import com.electrofear.parser.GlobalDataVehicle;
 import com.electrofear.parser.GlobalDataWeapon;
 import com.electrofear.parser.GlobalParsedXMLDataRepository;
+import com.electrofear.parser.GlobalTerrainFaunaObj;
+import com.electrofear.parser.GlobalTerrainObj;
 
 
 public class XMLParser {
@@ -205,13 +208,83 @@ public class XMLParser {
             tempGraphicAnimationParserObj.imageCount = Double.valueOf(element.getElementsByTagName("ImageCount").item(0).getFirstChild().getNodeValue());
             
             BaseObject.contextGlobalXMLData.addGraphicAnimation(tempGraphicAnimationParserObj);
+            
         }        
         
     }
     
+    /* levelPropertiesParser
+     * ====================================================
+     * Parses incoming level properties and then update
+     * global values such as camera, wind, lighting, etc
+     * ====================================================
+     */
     
-    
-    
+    public static void startParsingLevel(Document inputDom) {
+        GlobalLevelProperties levelXMLData = BaseObject.globalLevelProperties;
+        //PARSE THE FACTIONS
+
+
+        Element root = inputDom.getDocumentElement();
+        NodeList items = root.getElementsByTagName("MapBackGroundProperties");
+        levelXMLData.mapName = ((Element)items.item(0)).getElementsByTagName("Name").item(0).getFirstChild().getNodeValue();
+        levelXMLData.mapBackGroundImage = ((Element)items.item(0)).getElementsByTagName("ImageBackGround").item(0).getFirstChild().getNodeValue();    
+        levelXMLData.mapHeight = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Height").item(0).getFirstChild().getNodeValue());    
+        levelXMLData.mapWidth = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Width").item(0).getFirstChild().getNodeValue());
+
+        items = root.getElementsByTagName("CameraStartCoord");
+        levelXMLData.cameraPositionX = Float.valueOf(((Element)items.item(0)).getElementsByTagName("StartCoordX").item(0).getFirstChild().getNodeValue());    
+        levelXMLData.cameraPositionY = Float.valueOf(((Element)items.item(0)).getElementsByTagName("StartCoordY").item(0).getFirstChild().getNodeValue());    
+        levelXMLData.cameraPositionZ= Float.valueOf(((Element)items.item(0)).getElementsByTagName("StartCoordZ").item(0).getFirstChild().getNodeValue());
+                
+        
+        items = root.getElementsByTagName("Lighting");
+        levelXMLData.lightingAngle = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Angle").item(0).getFirstChild().getNodeValue());    
+        levelXMLData.lightingIntesity = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Intensity").item(0).getFirstChild().getNodeValue());    
+        levelXMLData.lightingShadowLength= Float.valueOf(((Element)items.item(0)).getElementsByTagName("ShadowLength").item(0).getFirstChild().getNodeValue());
+        
+        items = root.getElementsByTagName("Wind");
+        levelXMLData.windAngle = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Angle").item(0).getFirstChild().getNodeValue());
+        levelXMLData.windIntesity = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Magnitude").item(0).getFirstChild().getNodeValue());
+        
+        items = root.getElementsByTagName("Weather");
+        levelXMLData.weatherType = ((Element)items.item(0)).getElementsByTagName("WeatherType").item(0).getFirstChild().getNodeValue();
+        levelXMLData.weatherIntensity = Float.valueOf(((Element)items.item(0)).getElementsByTagName("Intensity").item(0).getFirstChild().getNodeValue());
+        
+        items = root.getElementsByTagName("MapObjects");
+        
+        
+        GlobalTerrainObj tempTerrainObj;
+        NodeList subItems = ((Element)items.item(0)).getElementsByTagName("VegetationObject");
+        
+        for(int i = 0; i < subItems.getLength(); i++){
+        	tempTerrainObj = new GlobalTerrainFaunaObj();
+            Element element = (Element) subItems.item(i);
+            tempTerrainObj.positionX = Float.valueOf(element.getElementsByTagName("LocationX").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.positionY = Float.valueOf(element.getElementsByTagName("LocationY").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.positionZ = Float.valueOf(element.getElementsByTagName("LocationZ").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.angle = Float.valueOf(element.getElementsByTagName("Angle").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.objType = element.getElementsByTagName("Type").item(0).getFirstChild().getNodeValue();
+            
+            BaseObject.globalLevelProperties.addTerrainObject(tempTerrainObj);
+        }
+        
+        subItems = ((Element)items.item(0)).getElementsByTagName("BuildingObject");
+        
+        for(int i = 0; i < subItems.getLength(); i++){
+        	tempTerrainObj = new GlobalTerrainFaunaObj();
+            Element element = (Element) subItems.item(i);
+            tempTerrainObj.positionX = Float.valueOf(element.getElementsByTagName("LocationX").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.positionY = Float.valueOf(element.getElementsByTagName("LocationY").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.positionZ = Float.valueOf(element.getElementsByTagName("LocationZ").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.shadowMultipler = Float.valueOf(element.getElementsByTagName("ShadowMultiplier").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.angle = Float.valueOf(element.getElementsByTagName("Angle").item(0).getFirstChild().getNodeValue());
+            tempTerrainObj.objType = element.getElementsByTagName("Type").item(0).getFirstChild().getNodeValue();
+            
+            BaseObject.globalLevelProperties.addTerrainObject(tempTerrainObj);
+        }         
+        
+    }
     
     
     private static void vehicleParser(Document inputDom){
