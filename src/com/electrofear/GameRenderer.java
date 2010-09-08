@@ -123,7 +123,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         gl.glShadeModel(GL10.GL_FLAT);                    //Enable Smooth Shading
         gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);            //Black Background
         gl.glClearDepthf(1.0f);                             //Depth Buffer Setup
-        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE);     //Set The Blending Function For Translucency
+        gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);     //Set The Blending Function For Translucency
         gl.glDepthFunc(GL10.GL_LEQUAL);                     //The Type Of Depth Testing To Do
         
         //Really Nice Perspective Calculations

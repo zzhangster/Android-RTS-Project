@@ -17,6 +17,7 @@ public class DrawableBitmap extends DrawableObject{
     float xPosition;
     float yPosition;
     float shadowDifference;
+    boolean ignoreShadows = false;
     boolean centerBasedOnImage = false;
     int priority = 0; //sets priority
     
@@ -35,6 +36,7 @@ public class DrawableBitmap extends DrawableObject{
         angle = inputAngle;
     }
     
+    
     public DrawableBitmap(Texture inputTexture){
         drawableBitMapTexture = inputTexture;
         width = 0;
@@ -45,7 +47,20 @@ public class DrawableBitmap extends DrawableObject{
         xPosition = 0;
         yPosition = 0;
         angle = 0;        
-    }    
+    }
+    
+    public DrawableBitmap(Texture inputTexture, boolean ignoreShadow){
+        drawableBitMapTexture = inputTexture;
+        width = 0;
+        height = 0;
+        zAxis = 0;
+        shadowDifference = 0.1f;
+        this.ignoreShadows = ignoreShadow;
+        drawableBitMapTexture = inputTexture;
+        xPosition = 0;
+        yPosition = 0;
+        angle = 0;        
+    }        
     
     public DrawableBitmap(Texture inputTexture, float inputShadowDifference){
         drawableBitMapTexture = inputTexture;
@@ -111,6 +126,8 @@ public class DrawableBitmap extends DrawableObject{
         // TODO DO ABOVE TWO
         
         //END OF DRAWING STUFF HERE
+    	
+    	
         gl.glBindTexture(GL10.GL_TEXTURE_2D, drawableBitMapTexture.nameId); //nameId is textureID for opengl
         //if (centerBasedOnImage){
             

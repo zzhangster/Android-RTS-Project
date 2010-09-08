@@ -21,7 +21,7 @@ public class MovementComponent extends BaseObject {
         Vector2 currentPosition = object.getPosition();
         
         if (object.TOBEREMOVED){
-        	object.setPosition(currentPosition.x, currentPosition.y + 5.0f * timeDelta);
+        	object.setPosition(currentPosition.x, currentPosition.y + 15.0f * timeDelta);
         }
         
     }

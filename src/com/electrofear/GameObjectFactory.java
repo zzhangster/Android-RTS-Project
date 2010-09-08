@@ -258,7 +258,7 @@ public class GameObjectFactory extends BaseObject {
                                                             defaultAngle,
                                                             1,
                                                             false,
-                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID)),
+                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
                                                             new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)));
         
         baseObjVehicleChasis.setCalculatedTranslateXY(mParentObjManager.getPosition().x, mParentObjManager.getPosition().y);
@@ -304,7 +304,7 @@ public class GameObjectFactory extends BaseObject {
 											                defaultAngle,
 											                2,
 											                false,
-											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID)),
+											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
 											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)));
         
         //DrawCannon Portion if Applicable
