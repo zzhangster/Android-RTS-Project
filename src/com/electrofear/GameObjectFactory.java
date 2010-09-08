@@ -502,13 +502,6 @@ public class GameObjectFactory extends BaseObject {
         // Create one render component (turret/MAINGUN)
         // Create one render component (turrent MG)
         GameObject nacHeavyMechObj = new GameObject();
-        nacHeavyMechObj.setPosition(x, y);
-        
-        RenderComponent nacHeavyMechObjRenderer = new RenderComponent();
-        int nacHeavyMechImage = R.drawable.nac_heavy_mech_test;
-        DrawableBitmap nacHeavyMechDrawable = new DrawableBitmap(x, y, 98, 93, 1, 0, BaseObject.mapLibrary.addTextureToLibrary(nacHeavyMechImage));
-        nacHeavyMechObjRenderer.setDrawable(nacHeavyMechDrawable);
-        nacHeavyMechObj.add(nacHeavyMechObjRenderer); 
         return nacHeavyMechObj;
     }
     

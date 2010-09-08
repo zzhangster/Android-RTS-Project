@@ -137,7 +137,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
 
     }
     
-    public void textureTest(GL10 gl){
+    /*public void textureTest(GL10 gl){
         //Texture Test
         int[] textures = new int[1];
         int[] mCropWorkspace = new int[4];
@@ -175,7 +175,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D, 
                 GL11Ext.GL_TEXTURE_CROP_RECT_OES, mCropWorkspace, 0);
 
-    }
+    }*/
     
     public synchronized void waitDrawingComplete() {
     }
