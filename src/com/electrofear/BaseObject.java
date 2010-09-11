@@ -37,6 +37,7 @@ public class BaseObject {
     public static LevelSystem levelSystem = new LevelSystem();
     public static CameraMainSystem cameraSystem = new CameraMainSystem();
     public static LevelBuilder levelBuilder = new LevelBuilder();
+    public static LightingSystem lightSystem = new LightingSystem();
 
     public static DrawableFactory drawableFactory = new DrawableFactory();
     public static GlobalWorldObjectRegister globalWorldRegister = new GlobalWorldObjectRegister();

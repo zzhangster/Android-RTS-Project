@@ -58,6 +58,8 @@ public class Game {
         mGameThread.setGameRoot(mGameRoot);
         //start adding items to the 
         //start();
+        
+        
     }
     
     public void start() {
@@ -140,6 +142,29 @@ public class Game {
     
     public boolean onKeyDownEvent(int keyCode) {
     	// 
+    	//TEST LIGHTING
+    	switch (keyCode) {
+	    	case KeyEvent.KEYCODE_1:
+	    		BaseObject.lightSystem.changeRed(10);
+	    		break;
+	    	case KeyEvent.KEYCODE_2:
+	    		BaseObject.lightSystem.changeRed(-10);
+	    		break;
+	    	case KeyEvent.KEYCODE_3:
+	    		BaseObject.lightSystem.changeGreen(10);
+	    		break;
+	    	case KeyEvent.KEYCODE_4:
+	    		BaseObject.lightSystem.changeGreen(-10);
+	    		break;
+	    	case KeyEvent.KEYCODE_5:
+	    		BaseObject.lightSystem.changeBlue(10);
+	    		break;
+	    	case KeyEvent.KEYCODE_6:
+	    		BaseObject.lightSystem.changeBlue(-10);
+	    		break;
+    	}
+    	//TEST END
+    	
         return true;
     }
     

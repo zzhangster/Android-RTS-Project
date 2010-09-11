@@ -13,6 +13,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 /* Core Activity that main menu or other path will call to start game engine
@@ -147,6 +148,11 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
     	//}
         return true;
     }    
+    
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+    	myGame.onKeyDownEvent(keyCode);
+		return true;
+    }
     
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // TODO Auto-generated method stub

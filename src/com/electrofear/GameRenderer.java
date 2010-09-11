@@ -50,12 +50,16 @@ public class GameRenderer implements GLSurfaceView.Renderer{
             gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);  
             gl.glShadeModel(GL10.GL_SMOOTH);
             gl.glEnable(GL10.GL_BLEND);
-            gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);              
+            //gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);  
+            gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA); 
             //Check if the blend flag has been set to enable/disable blending
-            gl.glDisable(GL10.GL_DEPTH_TEST);   //Turn Depth Testing Off            
-            gl.glColor4x(0x10000, 0x10000, 0x10000, 0x10000);
+            gl.glDisable(GL10.GL_DEPTH_TEST);   //Turn Depth Testing Off
             
-            //GET Camera Coordinates
+            
+            
+            //gl.glClearColor(1.0f, 0.0f, 0.0f, 0.5f); 
+            
+            //SETUP Camera Coordinates
             cameraPosition = BaseObject.cameraSystem.getCameraPosition();
             cameraLookAt = BaseObject.cameraSystem.getCameraLookAt();
             
@@ -64,7 +68,10 @@ public class GameRenderer implements GLSurfaceView.Renderer{
                           cameraPosition.x, cameraPosition.y, cameraPosition.z, 
                           cameraLookAt.x, cameraLookAt.y, cameraLookAt.z,
                           0, 1, 0);
+            //END OF SETUP CAMERA
           
+            
+            
             if (mDrawQueue != null) {
                 
                 ArrayList<BaseObject> objectDrawList = mDrawQueue.getMObjectList();
@@ -125,7 +132,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         gl.glClearDepthf(1.0f);                             //Depth Buffer Setup
         gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);     //Set The Blending Function For Translucency
         gl.glDepthFunc(GL10.GL_LEQUAL);                     //The Type Of Depth Testing To Do
-        
+        gl.glEnable(GL10.GL_COLOR_MATERIAL);
         //Really Nice Perspective Calculations
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST); 
         // TODO call the mGame.onSurfaceCreated and then load textures

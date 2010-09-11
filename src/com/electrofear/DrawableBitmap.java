@@ -16,8 +16,20 @@ public class DrawableBitmap extends DrawableObject{
     float zAxis; //my favorite axis
     float xPosition;
     float yPosition;
+    
+    //PRETTY MUCH defined as:
+    //Full => will be affected by "lighting"
+    //UI => user interface items will not be affected by "lighting"
+    //Light => will NOT be affected by "lighting"
+    //Auto sets to "Full"
+    String drawableLightingType = "Full"; //Auto sets to opaque
+    
+    //For Shadows
     float shadowDifference;
     boolean ignoreShadows = false;
+    
+    
+    //For Centering Image based on center coordinates
     boolean centerBasedOnImage = false;
     int priority = 0; //sets priority
     
@@ -36,6 +48,11 @@ public class DrawableBitmap extends DrawableObject{
         angle = inputAngle;
     }
     
+    public void setDrawableLightingType(String type){
+    	if (type == "Full" || type == "UI" || type == "Light" ) {
+    		drawableLightingType = type;
+    	}
+    }
     
     public DrawableBitmap(Texture inputTexture){
         drawableBitMapTexture = inputTexture;
@@ -106,26 +123,13 @@ public class DrawableBitmap extends DrawableObject{
 	}    
     
     public void startDrawing(GL10 gl){
-        /*gl.glShadeModel(GL10.GL_FLAT);
-        gl.glEnable(GL10.GL_BLEND);
-        gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
-        gl.glColor4x(0x10000, 0x10000, 0x10000, 0x10000);
-    
-        gl.glMatrixMode(GL10.GL_PROJECTION);
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
-        gl.glOrthof(0.0f, mWidth, 0.0f, mHeight, 0.0f, 1.0f);
-        gl.glMatrixMode(GL10.GL_MODELVIEW);
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
-        gl.glEnable(GL10.GL_TEXTURE_2D);*/
-    
-        //DRAW STUFF HERE!
-        //Get objects from DRAWING QUEUE
-        //also call draw function!
-        // TODO DO ABOVE TWO
-        
-        //END OF DRAWING STUFF HERE
+    	
+    	//Set Base Color to which texture will be drawn over, this will simulate Day/Night cycle
+    	if (this.drawableLightingType == "Full") {
+    		gl.glColor4f(BaseObject.lightSystem.red/255, BaseObject.lightSystem.green/255, BaseObject.lightSystem.blue/255, 1.0f);
+    	} else {
+    		gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    	}
     	
     	
         gl.glBindTexture(GL10.GL_TEXTURE_2D, drawableBitMapTexture.nameId); //nameId is textureID for opengl
@@ -166,7 +170,7 @@ public class DrawableBitmap extends DrawableObject{
             indexBuffer.position(0);            
             
             gl.glPushMatrix();
-
+            	//
                 gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
                 gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
                 //gl.glVertexPointer(3, GL10.GL_FLOAT, 0, markerBuffer);
@@ -182,7 +186,7 @@ public class DrawableBitmap extends DrawableObject{
                 gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
                 gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
                 //((GL11Ext) gl).glDrawTexfOES(-width/2, -height/2, 0, width, height);
-
+                
                         
             gl.glPopMatrix();
         //} else {
