@@ -44,13 +44,13 @@ public class LightingSystem extends BaseObject{
 		LightingNode NightToDawn = new LightingNode(0.15f,
 													0.25f,
 													new VectorColor4(75f,75f,105f, alpha),
-													new VectorColor4(175f,175f,145f, alpha));
+													new VectorColor4(175f,135f,135, alpha));
 		lightingNodes.add(NightToDawn);
 		
 		//////////
 		LightingNode DawnToDay = new LightingNode(0.25f,
 												  0.35f,
-												  new VectorColor4(175f,175f,145f, alpha),
+												  new VectorColor4(175f,135f,135f, alpha),
 												  new VectorColor4(255f,255f,255f, alpha));
 		
 		lightingNodes.add(DawnToDay);
