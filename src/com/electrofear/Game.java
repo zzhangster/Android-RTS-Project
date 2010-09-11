@@ -58,7 +58,8 @@ public class Game {
         mGameThread.setGameRoot(mGameRoot);
         //start adding items to the 
         //start();
-        
+        //AddLight System (also add other systems here)
+        mGameRoot.add(BaseObject.lightSystem);
         
     }
     
