@@ -247,6 +247,15 @@ public class GameObjectFactory extends BaseObject {
         //SHADOW ITEMSs
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_shadow", "drawable", "com.electrofear");
         
+        //LIGHT ITEMS
+        int resLightID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_light", "drawable", "com.electrofear");
+        DrawableBitmap lightDrawable;
+        if (resLightID > 0) {
+        	lightDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resLightID));
+        	lightDrawable.setDrawableLightingType("Light");
+        } else {
+        	lightDrawable = null;
+        }
         
         GameUnitObject baseObjVehicleChasis = new GameUnitObject( vehicleId,
         													globalTankProperties.internalId,
@@ -259,7 +268,8 @@ public class GameObjectFactory extends BaseObject {
                                                             1,
                                                             false,
                                                             new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
-                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)));
+                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)), 
+                                                            lightDrawable);
         
         baseObjVehicleChasis.setCalculatedTranslateXY(mParentObjManager.getPosition().x, mParentObjManager.getPosition().y);
         //creates all turrets into a list and order by interal id's and then add them accordingly
@@ -293,6 +303,16 @@ public class GameObjectFactory extends BaseObject {
       
         //SHADOW ITEMSs
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTurretGraphicProperties.image + "_shadow", "drawable", "com.electrofear");        
+        //LIGHT ITEMS
+        int resLightID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTurretGraphicProperties.image + "_light", "drawable", "com.electrofear");
+        
+        DrawableBitmap lightDrawable;
+        if (resLightID > 0) {
+        	lightDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resLightID));
+        	lightDrawable.setDrawableLightingType("Light");
+        } else {
+        	lightDrawable = null;
+        }
         
         GameUnitObject turretUnitObj = new GameUnitObject(  globalTurretProperties.turretId,
         													inputTurretData.internalId,
@@ -305,7 +325,8 @@ public class GameObjectFactory extends BaseObject {
 											                2,
 											                false,
 											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
-											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)));
+											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)),
+											                lightDrawable);
         
         //DrawCannon Portion if Applicable
         int weaponDataStringSize;
@@ -354,7 +375,8 @@ public class GameObjectFactory extends BaseObject {
 														              3,
 														              true,
 														              new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID)),
-	        														  shadowBitmap);        
+	        														  shadowBitmap,
+	        														  null);        
 	        turretUnitObj.addGameUnit(turretUnitCannonObj);
 	        turretSubComponentAI.addWeaponControlPoint(turretUnitCannonObj); //Add weapon control point here
 	        

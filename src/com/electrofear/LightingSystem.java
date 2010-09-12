@@ -27,7 +27,7 @@ public class LightingSystem extends BaseObject{
 		red = 255;
 		blue = 255;
 		green = 255;
-		totalTimeDuration = 50f;
+		totalTimeDuration = 25f;
 		currentTime = 0f;
 		alpha = 255;
 		

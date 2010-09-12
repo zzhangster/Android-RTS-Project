@@ -12,6 +12,7 @@ public class GameUnitObject extends GameObject {
     private boolean angleRelativeToParent;
     private DrawableObject mDrawable; //actual image or so
     private DrawableObject mDrawableShadow;
+    private DrawableObject mDrawableLight;
     private Texture mTexture;
     private GameUnitObject mParent = null;
     private ArrayList<GameUnitObject> mChildGameUnitObj;
@@ -29,7 +30,8 @@ public class GameUnitObject extends GameObject {
                           float inputZAxis,
                           boolean angleRelativeToParent,
                           DrawableObject inputDrawable,
-                          DrawableObject inputDrawableShadow){
+                          DrawableObject inputDrawableShadow,
+                          DrawableObject inputDrawableLight){
         gameUnitObjectID = objId;
         internalId = inputInternalId;
         relativeId = inputRelativeId;
@@ -49,6 +51,8 @@ public class GameUnitObject extends GameObject {
         
         //Shadow Drawables
         mDrawableShadow = inputDrawableShadow;
+        //Light Drawables
+        mDrawableLight = inputDrawableLight;
     }
     
     public void setAngle(float inputAngle){
@@ -151,8 +155,11 @@ public class GameUnitObject extends GameObject {
         if (mDrawableShadow != null) {
         	this.calculateShadowPositions(this.calculatedX, this.calculatedY, width, height, angle, zAxis);
         }
-        //DrawableObject 
-
+        //DrawableObject for light
+    	if (mDrawableLight != null) {
+    		mDrawableLight.updateCoords(this.calculatedX, this.calculatedY, width, height, angle, zAxis + 0.1f);
+    	}
+        
         
         for (int i = 0; i < this.mChildGameUnitObj.size(); i++){
             this.mChildGameUnitObj.get(i).calculate();
@@ -167,8 +174,9 @@ public class GameUnitObject extends GameObject {
     	
     	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.heightShadow;
     	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.heightShadow;
-    	
-    	mDrawableShadow.updateCoords(shadowX, shadowY, width, height, angle, zAxis - mDrawableShadow.getShadowDifference());
+    	if (mDrawableShadow != null) {
+    		mDrawableShadow.updateCoords(shadowX, shadowY, width, height, angle, zAxis - mDrawableShadow.getShadowDifference());
+    	}
     }
     
     public void addGameUnitObject(GameUnitObject obj){
@@ -196,7 +204,11 @@ public class GameUnitObject extends GameObject {
             	if (mDrawableShadow != null) {
             		BaseObject.renderSystem.scheduleForDraw(mDrawableShadow);
             	}
-            }        	
+            }
+            
+            if (mDrawableLight != null) {
+            	BaseObject.renderSystem.scheduleForDraw(mDrawableLight);
+            }
         	
             BaseObject.renderSystem.scheduleForDraw(mDrawable);
             
