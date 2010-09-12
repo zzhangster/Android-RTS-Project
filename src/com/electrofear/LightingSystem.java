@@ -23,6 +23,12 @@ public class LightingSystem extends BaseObject{
 	
 	float totalTimeDuration, currentTime;
 	
+	//Shadow Calculation
+	Vector2 vectorShadow = BaseObject.directionShadow;
+	float maxShadowHeight = BaseObject.heightShadow;
+	float currentShadowHeight = 0;
+	float currentShadowAlpha = 255;
+	
 	public LightingSystem(){
 		red = 255;
 		blue = 255;
@@ -31,9 +37,11 @@ public class LightingSystem extends BaseObject{
 		currentTime = 0f;
 		alpha = 255;
 		
+		
 		//PRESET VALUES FOR NIGHT DAY CYCLE
 		//STRUCTURE AS 
 		//PUT DATA IN XML AND PARSE FOR FUTURE REFERENCE
+		//ALPHA VALUE FOR SHADOWS ONLY!
 		LightingNode NightFirst = new LightingNode(0f,
 													0.15f,
 													new VectorColor4(75f,75f,105f, alpha),
@@ -91,6 +99,10 @@ public class LightingSystem extends BaseObject{
 		lightingNodes.add(NightLast);
 	}
 	
+	public void setCurrentHeight(float inputShadowHeight) {
+		maxShadowHeight = inputShadowHeight;
+	}
+	
 	public void setCurrentTime(float inputTime){
 		currentTime = inputTime;
 	}
@@ -140,7 +152,53 @@ public class LightingSystem extends BaseObject{
     	currentTime = ( currentTime + timeDelta ) % totalTimeDuration;
     	//Add Here to Do Once per frame instead of once per object
     	calculateColorByTime();
-    	Log.v("LightingSystem: ", "Color: " + red + ", " + green + ", " + blue);
+    	calculateSunPositionByTime();
+    	calculateShadowVisibilityByTime();
+    	//Log.v("LightingSystem: ", "Color: " + red + ", " + green + ", " + blue);
+    }
+    
+    
+    //Will only Change mangitude based on direction
+    public void calculateSunPositionByTime() {
+    	float shadowX,shadowY;
+    	float unitLength;
+    	float ratio = currentTime/totalTimeDuration;
+    	double ratioAngle = 0;
+    	
+    	if (BaseObject.drawShadow) {
+    		ratioAngle = (currentTime/totalTimeDuration) * 180;
+    		//double testing = Math.toRadians(ratioAngle);
+    		//double testing02 = Math.cos(testing);
+    		currentShadowHeight = (float) (maxShadowHeight * Math.cos(Math.toRadians(ratioAngle)));
+    		
+	    	/*unitLength = (float) Math.sqrt( BaseObject.directionShadow.x * BaseObject.directionShadow.x + BaseObject.directionShadow.y * BaseObject.directionShadow.y);
+	    	
+	    	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.lightSystem.currentShadowHeight;
+	    	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.lightSystem.currentShadowHeight;*/
+    	}
+    }
+    
+    public void calculateShadowVisibilityByTime() {
+    	float shadowX,shadowY;
+    	float unitLength;
+    	float ratio = currentTime/totalTimeDuration;
+    	double ratioAngle = 0;
+    	
+    	if (BaseObject.drawShadow) {
+    		ratioAngle = (currentTime/totalTimeDuration) * 180;
+    		//double testing = Math.toRadians(ratioAngle);
+    		//double testing02 = Math.cos(testing);
+    		currentShadowAlpha = (float) (255 * Math.sin(Math.toRadians(ratioAngle)));
+    		
+    		//if (currentShadowAlpha < 1f) {
+    		//	currentShadowAlpha = 0f;
+    		//}
+    		//currentShadowAlpha = 0f;
+	    	/*unitLength = (float) Math.sqrt( BaseObject.directionShadow.x * BaseObject.directionShadow.x + BaseObject.directionShadow.y * BaseObject.directionShadow.y);
+	    	
+	    	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.lightSystem.currentShadowHeight;
+	    	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.lightSystem.currentShadowHeight;*/
+    	}    	
     }
     
     private void calculateColorByTime(){

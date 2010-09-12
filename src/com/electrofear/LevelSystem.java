@@ -1,6 +1,7 @@
 package com.electrofear;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +11,7 @@ import org.w3c.dom.Document;
 import com.electrofear.GameObjectFactory.GameObjectType;
 import com.electrofear.level.GlobalLevelProperties;
 import com.electrofear.parser.GlobalDataGraphic;
+import com.electrofear.parser.GlobalDataVehicle;
 import com.electrofear.parser.GlobalTerrainObj;
 
 
@@ -19,7 +21,7 @@ import com.electrofear.parser.GlobalTerrainObj;
 public class LevelSystem {
 
     public GameObject mBackgroundObject;
-    public GameObject mGameObject; //holds actual items
+    public GameObject mGameObject; //holds actual items       
     
     public void loadLevel(int level) {
         // TODO Auto-generated method stub
@@ -52,60 +54,25 @@ public class LevelSystem {
         //Build Terrain Objects
         
         
-        
+        /////////////////////////////
+        //BUILD ALL TERRAIN OBJECTS//
+        /////////////////////////////
         GameObject terrainObject;
         RenderComponent terrainRenderComponent;
         RenderComponent shadowRenderComponent;
         DrawableBitmap terrainDrawable, shadowTerrainDrawable;
-        GlobalTerrainObj tempTerrainObj;
+        GlobalTerrainObj tempInfoTerrainObj;
        
         //values are from LoadLevel function and parsing
         GlobalLevelProperties levelProperties = BaseObject.globalLevelProperties;
         int terrainObjResourceId;
         GlobalDataGraphic globalTerrainObjProperty;
         for (int i = 0; i < levelProperties.terrainObjects.size(); i++) {
-        	tempTerrainObj = levelProperties.terrainObjects.get(i);
-	        terrainObject = new GameObject();
-	        terrainRenderComponent = new RenderComponent();
-	        
-	        
-	        
-	        //Get the image Id from globalxmldata
-	        globalTerrainObjProperty = BaseObject.contextGlobalXMLData.getGraphicById(tempTerrainObj.getObjType());
-	        terrainObjResourceId = BaseObject.contextParameters.context.getResources().getIdentifier(globalTerrainObjProperty.image, "drawable", "com.electrofear");
-	        //Create BackGround DrawableBitmap and add to RenderComponent
-	        //Z-Axis of 1 is lowest (drawn first)
-	        //MAPS STARTS AT (0, 0), since drawable starts drawing from center of image, we move the center to half width/half height
-	        terrainDrawable = new DrawableBitmap(tempTerrainObj.positionX, 
-	        									tempTerrainObj.positionY, 
-	        									(float) globalTerrainObjProperty.width, 
-	        									(float) globalTerrainObjProperty.height, 
-	        									tempTerrainObj.angle, 
-	        									tempTerrainObj.positionZ, 
-	        									BaseObject.mapLibrary.addTextureToLibrary(terrainObjResourceId));
-			terrainRenderComponent.setDrawable(terrainDrawable);
-			terrainObject.add(terrainRenderComponent);
-	        
-	        //SHADOWS
-	        Vector2 tempShadowPosition;
-	        shadowRenderComponent = new RenderComponent();
-	        terrainObjResourceId = BaseObject.contextParameters.context.getResources().getIdentifier(globalTerrainObjProperty.image + "_shadow", "drawable", "com.electrofear");
-	        //if shadow create rendercomponent and drawable shadowTerrainDrawable
-	        if (terrainObjResourceId > 0) {
-	        	tempShadowPosition = this.calculateShadowPositions(tempTerrainObj.positionX, tempTerrainObj.positionY, tempTerrainObj.getShadowMultipler());
-	        	shadowTerrainDrawable = new DrawableBitmap(tempShadowPosition.x, 
-			        									tempShadowPosition.y, 
-														(float) globalTerrainObjProperty.width, 
-														(float) globalTerrainObjProperty.height, 
-														tempTerrainObj.angle, 
-														tempTerrainObj.positionZ - 1.0f, //subtraction so that shadow is a litle lower than actual objects but higher than others
-														BaseObject.mapLibrary.addTextureToLibrary(terrainObjResourceId));
-	        	shadowRenderComponent.setDrawable(shadowTerrainDrawable);
-				terrainObject.add(shadowRenderComponent);	        	
-	        }
-	        
-	        
-	        root.add(terrainObject);
+        	tempInfoTerrainObj = levelProperties.terrainObjects.get(i);
+        	terrainObject = new GameObject();
+        	terrainObject.setPosition(tempInfoTerrainObj.positionX, tempInfoTerrainObj.positionY);        	
+        	spawnTerrainObject(terrainObject, tempInfoTerrainObj );
+        	root.add(terrainObject);
         }
         
 
@@ -133,6 +100,52 @@ public class LevelSystem {
         //root.add(mGameObject);
     }
     
+    private void spawnTerrainObject(GameObject mParentObjManager, GlobalTerrainObj objInfo) {
+    	GlobalDataGraphic globalTerrainObjProperty = BaseObject.contextGlobalXMLData.getGraphicById(objInfo.getObjType());
+
+        int resID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTerrainObjProperty.image, "drawable", "com.electrofear");
+        //int resID = Resources.getSystem().getIdentifier(globalTankGraphicProperties.image, "drawable", "com.electrofear");
+        
+        //SHADOW ITEMSs
+        int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTerrainObjProperty.image + "_shadow", "drawable", "com.electrofear");
+        DrawableBitmap shadowDrawable;
+        if (resShadowID > 0) {
+        	shadowDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID));
+        	shadowDrawable.setDrawableLightingType("Shadow");
+        } else {
+        	shadowDrawable = null;
+        }
+        //LIGHT ITEMS
+        int resLightID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTerrainObjProperty.image + "_light", "drawable", "com.electrofear");
+        DrawableBitmap lightDrawable;
+        if (resLightID > 0) {
+        	lightDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resLightID));
+        	lightDrawable.setDrawableLightingType("Light");
+        } else {
+        	lightDrawable = null;
+        }
+        
+        
+        //CREATE GRAPHIC PORTION AND FACTOR SHADOW MULTIPLIERS
+        GameTerrainObject baseTerrainObj = new GameTerrainObject(   "Terrain",
+		        													"00001",
+		        													"",
+		                                                            (float)globalTerrainObjProperty.width, 
+		                                                            (float)globalTerrainObjProperty.height,
+		                                                            0, //relative X
+		                                                            0, //relative Y
+		                                                            objInfo.angle,
+		                                                            objInfo.positionZ,
+		                                                            false,
+		                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
+		                                                            shadowDrawable, 
+		                                                            lightDrawable);
+        
+        baseTerrainObj.setShadowMultiplier(objInfo.shadowMultipler);
+        //CREATE GRAPHIC PORTION AND FACTOR SHADOW MULTIPLIERS
+        mParentObjManager.add(baseTerrainObj);
+    }      
+    
     //X, Y, multipler is for longer shadow (give illussion of taller object, ususally be set to 1 but can use other values
     private Vector2 calculateShadowPositions(float x, float y, float multiplier){
     	float shadowX,shadowY;
@@ -144,7 +157,8 @@ public class LevelSystem {
     	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.heightShadow*multiplier;
     	
     	return new Vector2(shadowX, shadowY);
-    }      
+    }
+    
     public GameObject buildLevel(int backgroundImage, int levelWidth, int levelHeight){
         // TODO CREATE BACKGROUND HERE FOR GAME
         //RenderComponent backgroundRender = new RenderComponent();

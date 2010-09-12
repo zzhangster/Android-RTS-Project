@@ -172,8 +172,8 @@ public class GameUnitObject extends GameObject {
     	
     	unitLength = (float) Math.sqrt( BaseObject.directionShadow.x * BaseObject.directionShadow.x + BaseObject.directionShadow.y * BaseObject.directionShadow.y);
     	
-    	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.heightShadow;
-    	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.heightShadow;
+    	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.lightSystem.currentShadowHeight;
+    	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.lightSystem.currentShadowHeight;
     	if (mDrawableShadow != null) {
     		mDrawableShadow.updateCoords(shadowX, shadowY, width, height, angle, zAxis - mDrawableShadow.getShadowDifference());
     	}

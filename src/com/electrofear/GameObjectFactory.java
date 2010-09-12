@@ -246,7 +246,13 @@ public class GameObjectFactory extends BaseObject {
         
         //SHADOW ITEMSs
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_shadow", "drawable", "com.electrofear");
-        
+        DrawableBitmap shadowDrawable;
+        if (resShadowID > 0) {
+        	shadowDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID));
+        	shadowDrawable.setDrawableLightingType("Shadow");
+        } else {
+        	shadowDrawable = null;
+        }
         //LIGHT ITEMS
         int resLightID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_light", "drawable", "com.electrofear");
         DrawableBitmap lightDrawable;
@@ -268,7 +274,7 @@ public class GameObjectFactory extends BaseObject {
                                                             1,
                                                             false,
                                                             new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
-                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)), 
+                                                            shadowDrawable, 
                                                             lightDrawable);
         
         baseObjVehicleChasis.setCalculatedTranslateXY(mParentObjManager.getPosition().x, mParentObjManager.getPosition().y);
@@ -303,6 +309,14 @@ public class GameObjectFactory extends BaseObject {
       
         //SHADOW ITEMSs
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTurretGraphicProperties.image + "_shadow", "drawable", "com.electrofear");        
+        
+        DrawableBitmap shadowDrawable;
+        if (resShadowID > 0) {
+        	shadowDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID));
+        	shadowDrawable.setDrawableLightingType("Shadow");
+        } else {
+        	shadowDrawable = null;
+        }        
         //LIGHT ITEMS
         int resLightID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTurretGraphicProperties.image + "_light", "drawable", "com.electrofear");
         
@@ -325,7 +339,7 @@ public class GameObjectFactory extends BaseObject {
 											                2,
 											                false,
 											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
-											                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID)),
+											                shadowDrawable,
 											                lightDrawable);
         
         //DrawCannon Portion if Applicable
@@ -360,6 +374,7 @@ public class GameObjectFactory extends BaseObject {
         	
         	if (resShadowID > 0) {
 	        	shadowBitmap = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID), 1.1f);
+	        	shadowDrawable.setDrawableLightingType("Shadow");
 	        } else {
 	        	shadowBitmap = null;
 	        }

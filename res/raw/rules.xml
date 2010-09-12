@@ -342,8 +342,8 @@
 
     <Graphics>
         <NameId>GFX_NAC_HEAVY_TANK</NameId>
-        <Height>99</Height>
-        <Width>163</Width>
+        <Height>105</Height>
+        <Width>173</Width>
         <Image>nac_heavy_tank_chasis</Image>
     </Graphics>
     

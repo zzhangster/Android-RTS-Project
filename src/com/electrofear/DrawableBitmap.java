@@ -49,7 +49,7 @@ public class DrawableBitmap extends DrawableObject{
     }
     
     public void setDrawableLightingType(String type){
-    	if (type == "Full" || type == "UI" || type == "Light" ) {
+    	if (type == "Full" || type == "UI" || type == "Light" || type == "Shadow" ) {
     		drawableLightingType = type;
     	}
     }
@@ -127,12 +127,16 @@ public class DrawableBitmap extends DrawableObject{
     	//Set Base Color to which texture will be drawn over, this will simulate Day/Night cycle
     	if (this.drawableLightingType == "Full") {
     		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA); 
-    		gl.glColor4f(BaseObject.lightSystem.red/255, BaseObject.lightSystem.green/255, BaseObject.lightSystem.blue/255, 1.0f);
-    	} else {
+    		gl.glColor4f(BaseObject.lightSystem.red/255f, BaseObject.lightSystem.green/255f, BaseObject.lightSystem.blue/255f, 1.0f);
+    	} else if (this.drawableLightingType == "Light") {
     		gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA); 
     		gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    	} else if (this.drawableLightingType == "Shadow") {
+    		gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
+    		float testing = BaseObject.lightSystem.currentShadowAlpha/255f;
+    		gl.glColor4f(1.0f, 1.0f, 1.0f, testing);
+    		
     	}
-    	
     	
         gl.glBindTexture(GL10.GL_TEXTURE_2D, drawableBitMapTexture.nameId); //nameId is textureID for opengl
         //if (centerBasedOnImage){

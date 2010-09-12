@@ -59,6 +59,8 @@ public class Game {
         //start adding items to the 
         //start();
         //AddLight System (also add other systems here)
+        BaseObject.lightSystem = new LightingSystem();
+        BaseObject.lightSystem.setCurrentHeight(BaseObject.heightShadow);
         mGameRoot.add(BaseObject.lightSystem);
         
     }

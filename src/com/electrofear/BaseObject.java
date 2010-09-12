@@ -37,7 +37,9 @@ public class BaseObject {
     public static LevelSystem levelSystem = new LevelSystem();
     public static CameraMainSystem cameraSystem = new CameraMainSystem();
     public static LevelBuilder levelBuilder = new LevelBuilder();
-    public static LightingSystem lightSystem = new LightingSystem();
+    
+    //Create New System in Game class BootStrap function and not here
+    public static LightingSystem lightSystem;
 
     public static DrawableFactory drawableFactory = new DrawableFactory();
     public static GlobalWorldObjectRegister globalWorldRegister = new GlobalWorldObjectRegister();
