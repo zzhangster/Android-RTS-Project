@@ -28,6 +28,7 @@ public class LightingSystem extends BaseObject{
 	float maxShadowHeight = BaseObject.heightShadow;
 	float currentShadowHeight = 0;
 	float currentShadowAlpha = 255;
+	float currentLightAlpha = 255;
 	
 	public LightingSystem(){
 		red = 255;
@@ -154,6 +155,7 @@ public class LightingSystem extends BaseObject{
     	calculateColorByTime();
     	calculateSunPositionByTime();
     	calculateShadowVisibilityByTime();
+    	calculateLightVisibilityByTime();
     	//Log.v("LightingSystem: ", "Color: " + red + ", " + green + ", " + blue);
     }
     
@@ -181,25 +183,43 @@ public class LightingSystem extends BaseObject{
     public void calculateShadowVisibilityByTime() {
     	float shadowX,shadowY;
     	float unitLength;
-    	float ratio = currentTime/totalTimeDuration;
+    	float ratioShadowCutOff = currentTime/totalTimeDuration;
+    	float offSetTime = totalTimeDuration/10; //FOR DURATION offset in front and end of duration to prevent shadow "JUMPING"
     	double ratioAngle = 0;
     	
     	if (BaseObject.drawShadow) {
-    		ratioAngle = (currentTime/totalTimeDuration) * 180;
+    		
     		//double testing = Math.toRadians(ratioAngle);
     		//double testing02 = Math.cos(testing);
+    		/*if (currentTime < offSetTime  || currentTime > (totalTimeDuration - offSetTime)) {
+    			currentShadowAlpha = 0f;
+    		} else {
+    			ratioAngle = ((currentTime - offSetTime)/ (totalTimeDuration - 2 * offSetTime) ) * 180;
+    			if (ratioAngle > 180) {
+    				ratioAngle = 180;
+    			}
+    			currentShadowAlpha = (float) (255 * Math.sin(Math.toRadians(ratioAngle)));
+    		}*/
+    		ratioAngle = (currentTime/totalTimeDuration) * 180;
     		currentShadowAlpha = (float) (255 * Math.sin(Math.toRadians(ratioAngle)));
-    		
-    		//if (currentShadowAlpha < 1f) {
-    		//	currentShadowAlpha = 0f;
-    		//}
-    		//currentShadowAlpha = 0f;
-	    	/*unitLength = (float) Math.sqrt( BaseObject.directionShadow.x * BaseObject.directionShadow.x + BaseObject.directionShadow.y * BaseObject.directionShadow.y);
-	    	
-	    	shadowX = x + (BaseObject.directionShadow.x / unitLength) * BaseObject.lightSystem.currentShadowHeight;
-	    	shadowY = y + (BaseObject.directionShadow.y / unitLength) * BaseObject.lightSystem.currentShadowHeight;*/
     	}    	
     }
+    
+    public void calculateLightVisibilityByTime() {
+    	float shadowX,shadowY;
+    	float unitLength;
+    	float offSetTime = totalTimeDuration/10; //FOR DURATION offset in front and end of duration to prevent shadow "JUMPING"
+    	double ratioAngle = 0;
+    	
+    	ratioAngle = (currentTime/totalTimeDuration) * 180;
+    	currentLightAlpha = (float) (255 * (1-Math.sin(Math.toRadians(ratioAngle))));
+    	
+    	//Cutoff, so there will still be light during day
+    	if (currentLightAlpha < 160f) {
+    		currentLightAlpha = 160f;
+    	}
+    	   	
+    }    
     
     private void calculateColorByTime(){
         //Duration of Events
