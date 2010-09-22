@@ -83,6 +83,7 @@ public class XMLParser {
             tempVehicleParserObj.pointCost = Double.valueOf(element.getElementsByTagName("PointCost").item(0).getFirstChild().getNodeValue());
             tempVehicleParserObj.unitHP = Double.valueOf(element.getElementsByTagName("UnitHP").item(0).getFirstChild().getNodeValue());
             tempVehicleParserObj.graphicsId = element.getElementsByTagName("GraphicId").item(0).getFirstChild().getNodeValue();
+            tempVehicleParserObj.trackedGraphicId = element.getElementsByTagName("TrackGraphicId").item(0).getFirstChild().getNodeValue();
             
             NodeList turretItems = element.getElementsByTagName("UnitTurret");
             GlobalDataUnitSubTurretData tempTurretParserObj;

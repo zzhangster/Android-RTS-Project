@@ -65,13 +65,14 @@
         <PointCost>500</PointCost>
         <UnitHP>800</UnitHP>
         <GraphicId>GFX_NAC_HEAVY_TANK</GraphicId>
+        <TrackGraphicId>NULL</TrackGraphicId>
         
         <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
         <UnitTurret>
             <InternalId>00002</InternalId>
             <TurretId>NAC_HVY_TNK_MAIN_TURRET</TurretId>
             <RelativeToID>00001</RelativeToID>
-            <TurretOffSetX>-10</TurretOffSetX>
+            <TurretOffSetX>-12</TurretOffSetX>
             <TurretOffsetY>0</TurretOffsetY>
             <Weapon>130MM</Weapon> <!-- CAN HAVE MULTIPLE ITEMS -->
         </UnitTurret>
@@ -98,6 +99,7 @@
         <PointCost>300</PointCost>
         <UnitHP>200</UnitHP>
         <GraphicId>GFX_NAC_SCOUT_JEEP</GraphicId>
+        <TrackGraphicId>GFX_NAC_SCOUT_JEEP_TIRES</TrackGraphicId>
         
         <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
         <UnitTurret>
@@ -147,21 +149,21 @@
    <TURRET>
        <TurretId>NAC_HVY_TNK_MAIN_TURRET</TurretId>
        <GraphicId>GFX_NAC_HVY_TNK_MAIN_TURRET</GraphicId>
-	   <WeaponOffSet>85#0#ANIM_NAC_HVY_GUN</WeaponOffSet>
+	   <WeaponOffSet>95#-2#ANIM_NAC_HVY_GUN</WeaponOffSet>
        <RotateRate>5</RotateRate>
    </TURRET> 
    
    <TURRET>
        <TurretId>NAC_HVY_TNK_MG_TURRET</TurretId>
        <GraphicId>GFX_NAC_HVY_TNK_MG_TURRET</GraphicId>
-       <WeaponOffSet>14#0#ANIM_NAC_MG_GUN</WeaponOffSet>
+       <WeaponOffSet>20#0#ANIM_NAC_MG_GUN</WeaponOffSet>
        <RotateRate>20</RotateRate>
    </TURRET>
    
    <TURRET>
 	   <TurretId>NAC_SCOUT_JEEP_MG_TURRET</TurretId>
-       <GraphicId>GFX_NAC_SCOUT_JEEP_MG_TURRET</GraphicId>
-       <WeaponOffSet>30#0#ANIM_NAC_SCOUT_MG_GUN</WeaponOffSet>
+       <GraphicId>GFX_NAC_HVY_TNK_MG_TURRET</GraphicId>
+       <WeaponOffSet>20#0#ANIM_NAC_MG_GUN</WeaponOffSet>
        <RotateRate>20</RotateRate>   		
    </TURRET>
 
@@ -238,16 +240,16 @@
        
 	<AnimationGraphics>
 		<NameId>ANIM_NAC_HVY_GUN</NameId>
-		<Height>10</Height>
-		<Width>80</Width>
+		<Height>16</Height>
+		<Width>96</Width>
 		<ImageBase>anim_gfx_nac_tnk_gun</ImageBase>
 		<ImageCount>5</ImageCount>
 	</AnimationGraphics>
 	
 	<AnimationGraphics>
 		<NameId>ANIM_NAC_MG_GUN</NameId>
-		<Height>38</Height>
-		<Width>35</Width>
+		<Height>7</Height>
+		<Width>21</Width>
 		<ImageBase>anim_gfx_nac_mg_gun</ImageBase>
 		<ImageCount>5</ImageCount>
 	</AnimationGraphics>	
@@ -342,9 +344,16 @@
 
     <Graphics>
         <NameId>GFX_NAC_HEAVY_TANK</NameId>
-        <Height>105</Height>
-        <Width>173</Width>
+        <Height>112</Height>
+        <Width>198</Width>
         <Image>nac_heavy_tank_chasis</Image>
+    </Graphics>
+    
+    <Graphics>
+    	<NameId>GFX_NAC_SCOUT_JEEP_TIRES</NameId>
+        <Height>93</Height>
+        <Width>128</Width>
+        <Image>nac_scout_jeep_tires</Image>
     </Graphics>
     
     <Graphics>
@@ -356,8 +365,8 @@
  
     <Graphics>
         <NameId>GFX_NAC_HVY_TNK_MAIN_TURRET</NameId>
-        <Height>99</Height>
-        <Width>115</Width>
+        <Height>120</Height>
+        <Width>134</Width>
         <Image>nac_heavy_tank_turret</Image>
     </Graphics>
     
@@ -370,8 +379,8 @@
     
     <Graphics>
         <NameId>GFX_NAC_HVY_TNK_MG_TURRET</NameId>
-        <Height>30</Height>
-        <Width>30</Width>
+        <Height>35</Height>
+        <Width>35</Width>
         <Image>nac_heavy_tank_mg_turret</Image>
     </Graphics>
 

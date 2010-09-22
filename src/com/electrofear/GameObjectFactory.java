@@ -188,19 +188,47 @@ public class GameObjectFactory extends BaseObject {
         // Create one base render component (hull)
         // Create one render component (turret/MAINGUN)
         // Create one render component (turrent MG)
-
+    	float defaultAngle = 90f;
         GameObject nacScoutJeepManager = new GameObject();
         nacScoutJeepManager.setPosition(x, y);
         nacScoutJeepManager.setFaction("NACTEST");
         nacScoutJeepManager.setObjectId("JEEP");
         nacScoutJeepManager.setMovable(testingTOBEREMOVED);
         
+        //Spawn Vehicle Tires Here
+        GlobalDataVehicle globalTankProperties = BaseObject.contextGlobalXMLData.getVehicleUnitById("NAC_SCOUT_JEEP");
+        GlobalDataGraphic globalTankGraphicProperties = BaseObject.contextGlobalXMLData.getGraphicById(globalTankProperties.trackedGraphicId);
+        int resID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image, "drawable", "com.electrofear");
+        int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_shadow", "drawable", "com.electrofear");
+        DrawableBitmap shadowDrawable;
+        if (resShadowID > 0) {
+        	shadowDrawable = new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resShadowID));
+        	shadowDrawable.setDrawableLightingType("Shadow");
+        } else {
+        	shadowDrawable = null;
+        }
+        
+        GameUnitObject baseObjVehicleTires = new GameUnitObject( "Tire",
+        													"0000000", //default tire id
+        													"",
+                                                            (float)globalTankGraphicProperties.width, 
+                                                            (float)globalTankGraphicProperties.height,
+                                                            0, //relative X
+                                                            0, //relative Y
+                                                            defaultAngle,
+                                                            1,
+                                                            false,
+                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
+                                                            shadowDrawable, 
+                                                            null);
+        
+        baseObjVehicleTires.setCalculatedTranslateXY(nacScoutJeepManager.getPosition().x, nacScoutJeepManager.getPosition().y);        
         
         
-        
+        nacScoutJeepManager.add(baseObjVehicleTires);
         //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
         //COMPONENTS FOR ANY TURRETS AVALIABLE
-        spawnTrackedVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", 90);
+        spawnTrackedVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", defaultAngle);
         
         
         //CREATES MOVEMENT

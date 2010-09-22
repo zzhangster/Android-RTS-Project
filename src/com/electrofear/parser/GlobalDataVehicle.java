@@ -14,6 +14,7 @@ public class GlobalDataVehicle extends GlobalDataUnit {
     public double unitHP;
     public double pointCost;
     public String graphicsId;
+    public String trackedGraphicId;
     
     public ArrayList<GlobalDataUnitSubTurretData> mSubTurretData; //not actual turret data
     
