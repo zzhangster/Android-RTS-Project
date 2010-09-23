@@ -70,13 +70,15 @@ public final class R {
         public static final int nac_heavy_tank_mg_turret_light=0x7f02002a;
         public static final int nac_heavy_tank_mg_turret_shadow=0x7f02002b;
         public static final int nac_heavy_tank_turret=0x7f02002c;
-        public static final int nac_scout_jeep_chasis=0x7f02002d;
-        public static final int nac_scout_jeep_chasis_light=0x7f02002e;
-        public static final int nac_scout_jeep_chasis_shadow=0x7f02002f;
-        public static final int nac_scout_jeep_tires=0x7f020030;
-        public static final int nac_scout_jeep_tires_shadow=0x7f020031;
-        public static final int nac_scout_jeep_turret=0x7f020032;
-        public static final int nac_scout_jeep_turret_shadow=0x7f020033;
+        public static final int nac_heavy_tank_turret_light=0x7f02002d;
+        public static final int nac_heavy_tank_turret_shadow=0x7f02002e;
+        public static final int nac_scout_jeep_chasis=0x7f02002f;
+        public static final int nac_scout_jeep_chasis_light=0x7f020030;
+        public static final int nac_scout_jeep_chasis_shadow=0x7f020031;
+        public static final int nac_scout_jeep_tires=0x7f020032;
+        public static final int nac_scout_jeep_tires_shadow=0x7f020033;
+        public static final int nac_scout_jeep_turret=0x7f020034;
+        public static final int nac_scout_jeep_turret_shadow=0x7f020035;
     }
     public static final class id {
         public static final int MainMenuOptionsButton=0x7f070012;
