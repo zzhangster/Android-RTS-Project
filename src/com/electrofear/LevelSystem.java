@@ -172,7 +172,7 @@ public class LevelSystem {
         int backgroundResource = BaseObject.contextParameters.context.getResources().getIdentifier(levelProperties.mapBackGroundImage, "drawable", "com.electrofear");
         
         //BACKGROUND IMAGE!
-        backgroundResource = R.drawable.nac_heavy_tank_chasis;
+        backgroundResource = R.drawable.back_ground_level_1;
         //backgroundResource = R.drawable.back_ground_level_1;
         //Create BackGround DrawableBitmap and add to RenderComponent
         //Z-Axis of 1 is lowest (drawn first)
