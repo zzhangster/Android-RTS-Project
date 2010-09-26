@@ -4,4 +4,9 @@
     <string name="quake_feed">http://earthquake.usgs.gov/eqcenter/catalogs/1day-M2.5.xml</string>
     <string name="menu_update">Refresh Earthquakes</string>
     <string name="whats_new_ticker">Test</string>
+    
+	<string name="quit_game_dialog_title">Surrender Already?</string>
+	<string name="quit_game_dialog_ok">Foo shoo!</string>
+	<string name="quit_game_dialog_cancel">F\'off!</string>
+	<string name="quit_game_dialog_message">Do you want to shame your family?</string>    
 </resources>

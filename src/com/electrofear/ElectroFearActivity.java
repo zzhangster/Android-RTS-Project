@@ -8,6 +8,9 @@ import android.opengl.GLSurfaceView;
 import com.electrofear.Game;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -125,10 +128,13 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
         myGame.onPause();
     }
     
-    @Override
-	protected void onDestroy(){
+    protected void onDestroy() {
+        //DebugLog.d("AndouKun", "onDestroy()");
+    	myGame.stop();
+        super.onDestroy();
         
     }
+
     
     public boolean onTouchEvent(MotionEvent event) {
     	//if (!myGame.isPaused()) {
@@ -150,8 +156,13 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
     }    
     
     public boolean onKeyDown(int keyCode, KeyEvent event){
-    	myGame.onKeyDownEvent(keyCode);
-		return true;
+    	if (keyCode == KeyEvent.KEYCODE_BACK) {
+    		showDialog(20);
+    		return true;
+    	} else {
+	    	myGame.onKeyDownEvent(keyCode);
+			return true;
+    	}
     }
     
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -162,6 +173,29 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
     public void onSensorChanged(SensorEvent event) {
         // TODO Auto-generated method stub
         
+    }
+    
+    /* Create Dialog Section
+     * =====================
+     * 20 => Quit Dialog
+     * =====================
+     */
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog = null;
+        if (id == 20) {
+        	
+            dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.quit_game_dialog_title)
+                .setPositiveButton(R.string.quit_game_dialog_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    	finish();
+                    }
+                })
+                .setNegativeButton(R.string.quit_game_dialog_cancel, null)
+                .setMessage(R.string.quit_game_dialog_message)
+                .create();
+        }
+        return dialog;
     }
 
 }

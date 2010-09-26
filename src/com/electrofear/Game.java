@@ -17,11 +17,13 @@ public class Game {
     
     private GameRenderer mRenderer;
     private GLSurfaceView mSurfaceView;
-    private ContextParameters mContextParameters;    
+    private ContextParameters mContextParameters;
+    private Context context;
     
     private boolean mRunning;
     private boolean mBootstrapComplete;    
     private boolean mGLDataLoaded;
+    private boolean levelAlreadyLoaded = false;
     
     //Controls
     private float firstTouchX, firstTouchY;
@@ -82,11 +84,19 @@ public class Game {
     
     //GOING TO ACTUAL LEVEL after surface change detected
     public void onSurfaceReady(Context mContext, GL10 gl) {
-        goToLevel(1, mContext, gl);
+    	if (!levelAlreadyLoaded) {
+    		
+      		
+    		
+	        goToLevel(1, mContext, gl);
+     
+	        levelAlreadyLoaded = true;
+    	}
     }
     
     protected synchronized void goToLevel(int level, Context mContext, GL10 gl) {
         //attach root here so that drawing object will be added to mGameRoot
+    	
         BaseObject.levelSystem.loadLevel(level);
         BaseObject.mapLibrary.loadAllTextures(mContext, gl);
         start();
@@ -99,10 +109,6 @@ public class Game {
     
     public void onSurfaceCreated() {
         
-            
-            //mSurfaceView.loadTextures(BaseObject.sSystemRegistry.longTermTextureLibrary);
-            //mSurfaceView.loadTextures(BaseObject.sSystemRegistry.shortTermTextureLibrary);
-            //mSurfaceView.loadBuffers(BaseObject.sSystemRegistry.bufferLibrary);
             mGLDataLoaded = true;
           
     }
@@ -184,4 +190,15 @@ public class Game {
         // TODO Auto-generated method stub
         
     }
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		mGameThread.stopGame();
+        try {
+            mGame.join();
+        } catch (InterruptedException e) {
+            mGame.interrupt();
+        }
+        mGame = null;
+	}
 }

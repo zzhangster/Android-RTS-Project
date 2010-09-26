@@ -25,6 +25,10 @@ public class Texture {
         this.finishedLoading = texture.finishedLoading;
     }
     
+    public void restLoading() {
+    	this.finishedLoading = false;
+    }
+    
     public void setResourceID(int resourceID){
         this.rawResourceId = resourceID;
     }

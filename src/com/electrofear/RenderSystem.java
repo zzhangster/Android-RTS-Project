@@ -33,7 +33,10 @@ public class RenderSystem {
 
     public void emptyQueues(GameRenderer mRenderer) {
         // TODO Auto-generated method stub
-        
+        for (int i = 0; i < TOTALQUEUE; i++){
+            mRenderQueues[i] = null;
+            mRenderQueues[i] = new OrderedRenderObjectManager();
+        }
     }
 
     public void scheduleForDraw(DrawableObject mDrawable,

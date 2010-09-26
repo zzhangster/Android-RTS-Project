@@ -84,6 +84,15 @@ public class TextureLibrary {
         }
     }
     
+    /* Reset All Textures in the Buffer so that we can load later */
+    public void resetTextures() {
+        for (int i = 0; i < currentIndexSize; i++){
+            if(mTextureLibraryHash[i] != null) {
+                mTextureLibraryHash[i].restLoading();
+            }
+        }    	
+    }
+    
     //Initial LOAD INTO OPENGL
     //Get a texture, find the "rawResource" which is R.drawable something in the Texture Object
     //and then add it into the opengl, note that mTextureID is the id that opengl refers to

@@ -60,7 +60,49 @@ public class BaseObject {
     }
 
     public void reset() {
+    	
+    }
+    
+    public static void resetAllElements() {
         // TODO Auto-generated method stub
+        //Progress Week 2, OBJ Manager and OBJ Factory
+        //Factory Creates any spawnable objects, while manager manages them
+        objManager = new ObjectManager();
+        objFactory = new GameObjectFactory();
         
+        //public static CameraMainSystem cameraSystem; // CameraSystem
+        collisionSystem = new CollisionMainSystem(); // Collision System
+        contextParameters = new ContextParameters(); //GLOBAL VALUES FOR SYSTEM
+        contextGlobalXMLData = new GlobalParsedXMLDataRepository();
+        
+        globalUnitObjData = new TreeMap();
+
+        //sSystemRegistry;
+        
+        //TEXTURE LIBRARY, holds TEXTURE OBJECTS which contains the drawable id and openGL id
+        mapLibrary = new TextureLibrary();
+        objectLibrary = new TextureLibrary();
+        effectsLibrary = new TextureLibrary();
+        uiLibrary = new TextureLibrary();
+
+        //List of Systems
+        renderSystem = new RenderSystem();
+        levelSystem = new LevelSystem();
+        cameraSystem = new CameraMainSystem();
+        levelBuilder = new LevelBuilder();
+        
+        //Create New System in Game class BootStrap function and not here
+        lightSystem = new LightingSystem();
+
+        drawableFactory = new DrawableFactory();
+        globalWorldRegister = new GlobalWorldObjectRegister();
+        
+        
+        
+        //ALL GLOBAL SETTINGS FOR GAME - SHADOW SETTINGS
+        globalLevelProperties = new GlobalLevelProperties();
+        drawShadow = true;
+        directionShadow = new Vector2(-10f, -20f);
+        heightShadow = 15f;       
     }
 }

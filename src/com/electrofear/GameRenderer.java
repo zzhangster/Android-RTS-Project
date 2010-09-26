@@ -16,6 +16,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.opengl.GLUtils;
 import android.os.SystemClock;
+import android.util.Log;
 
 public class GameRenderer implements GLSurfaceView.Renderer{
     private long mLastTime;
@@ -29,6 +30,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
     private OrderedRenderObjectManager mDrawQueue;
     private float mScaleX;
     private float mScaleY;
+    private boolean lostSurfaceView = false; //Hackish attempt to mimic onSurfaceLost
     
     public GameRenderer(Context context, Game game, int gameWidth,
             int gameHeight) {
@@ -121,6 +123,8 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         
         mGame.onSurfaceReady(mContext, gl);
         
+        //Bad because we still have texture in memory if we decide to quit
+        
     }
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -140,9 +144,20 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         // this function is called
         
         //textureTest(gl);
-
+        if (lostSurfaceView) {
+	        BaseObject.mapLibrary.resetTextures();
+	        BaseObject.mapLibrary.loadAllTextures(this.mContext, gl);
+        } else {
+        	lostSurfaceView = true;
+        }
 
     }
+    
+    public void onSurfaceLost() {
+    	Log.v("Game Renderer: ", "Screen Lost");
+    	BaseObject.mapLibrary.resetTextures();
+    }
+      
     
     /*public void textureTest(GL10 gl){
         //Texture Test

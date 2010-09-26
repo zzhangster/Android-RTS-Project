@@ -41,6 +41,7 @@ public class GameThread implements Runnable{
 
         }
         BaseObject.renderSystem.emptyQueues(mRenderer);
+        BaseObject.resetAllElements();
     }
     
     public GameThread(GameRenderer renderer) {
@@ -48,6 +49,10 @@ public class GameThread implements Runnable{
     }
     
     public void resumeGame() {
+    }
+    
+    public void stopGame() {
+    	mFinished = true;
     }
 
     //Get the objectManager gameroot so that the thread can update

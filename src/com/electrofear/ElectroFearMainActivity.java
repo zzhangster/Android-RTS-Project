@@ -47,10 +47,14 @@ public class ElectroFearMainActivity extends Activity {
     
     private View.OnClickListener quitButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
-        	
+        	finish();
         }
     };   
     
+    protected void onDestroy() {
+        super.onDestroy();
+        
+    }
     
     
     /** Called when the activity is first created. */

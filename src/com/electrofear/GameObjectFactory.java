@@ -195,8 +195,17 @@ public class GameObjectFactory extends BaseObject {
         nacScoutJeepManager.setObjectId("JEEP");
         nacScoutJeepManager.setMovable(testingTOBEREMOVED);
         
+        spawnWheeledVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", 90);
+        
+        return nacScoutJeepManager;
+    }    
+    
+    
+    
+    private void spawnWheeledVehicleComponents(GameObject mParentObjManager, String vehicleId, float defaultAngle) {
+    	
         //Spawn Vehicle Tires Here
-        GlobalDataVehicle globalTankProperties = BaseObject.contextGlobalXMLData.getVehicleUnitById("NAC_SCOUT_JEEP");
+        GlobalDataVehicle globalTankProperties = BaseObject.contextGlobalXMLData.getVehicleUnitById(vehicleId);
         GlobalDataGraphic globalTankGraphicProperties = BaseObject.contextGlobalXMLData.getGraphicById(globalTankProperties.trackedGraphicId);
         int resID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image, "drawable", "com.electrofear");
         int resShadowID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTankGraphicProperties.image + "_shadow", "drawable", "com.electrofear");
@@ -222,13 +231,13 @@ public class GameObjectFactory extends BaseObject {
                                                             shadowDrawable, 
                                                             null);
         
-        baseObjVehicleTires.setCalculatedTranslateXY(nacScoutJeepManager.getPosition().x, nacScoutJeepManager.getPosition().y);        
+        baseObjVehicleTires.setCalculatedTranslateXY(mParentObjManager.getPosition().x, mParentObjManager.getPosition().y);        
         
         
-        nacScoutJeepManager.add(baseObjVehicleTires);
+        mParentObjManager.add(baseObjVehicleTires);
         //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
         //COMPONENTS FOR ANY TURRETS AVALIABLE
-        spawnTrackedVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", defaultAngle);
+        spawnTrackedVehicleComponents(mParentObjManager, vehicleId, defaultAngle);
         
         
         //CREATES MOVEMENT
@@ -238,10 +247,18 @@ public class GameObjectFactory extends BaseObject {
         //CREATE MAIN
         
         //REGISTER TO WORLD
-        BaseObject.globalWorldRegister.registerToGlobalRegistry(nacScoutJeepManager);
-        
-        return nacScoutJeepManager;
-    }    
+        BaseObject.globalWorldRegister.registerToGlobalRegistry(mParentObjManager);
+    	
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     /* autoSpawnVehicle
      * ===============================================================
