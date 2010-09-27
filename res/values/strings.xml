@@ -8,5 +8,5 @@
 	<string name="quit_game_dialog_title">Surrender Already?</string>
 	<string name="quit_game_dialog_ok">Foo shoo!</string>
 	<string name="quit_game_dialog_cancel">F\'off!</string>
-	<string name="quit_game_dialog_message">Do you want to shame your family?</string>    
+	<string name="quit_game_dialog_message">Generic \"Do you want to quit\" statement.</string>    
 </resources>

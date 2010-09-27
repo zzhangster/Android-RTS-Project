@@ -11,13 +11,15 @@ public class GameThread implements Runnable{
     
     public void run() {
         // TODO Auto-generated method stub
+    	mLastTime = SystemClock.uptimeMillis();
         mFinished = false;
         while (!mFinished) {
     
             
             if (mGameRoot != null) {
                 //Wait for Rendering Thread to Finish
-                mRenderer.checkRenderingIsFinshed();                
+                
+            	mRenderer.checkRenderingIsFinshed();                
                 final long time = SystemClock.uptimeMillis();
                 final long timeDelta = time - mLastTime;
                 long finalDelta = timeDelta;
