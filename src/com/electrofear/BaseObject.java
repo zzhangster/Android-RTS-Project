@@ -16,6 +16,7 @@ public class BaseObject {
     //Factory Creates any spawnable objects, while manager manages them
     public static ObjectManager objManager;
     public static GameObjectFactory objFactory = new GameObjectFactory();
+    public static GameParticleEffectObjectFactory objParticleFactory = new GameParticleEffectObjectFactory();
     
     //public static CameraMainSystem cameraSystem; // CameraSystem
     public static CollisionMainSystem collisionSystem; // Collision System
@@ -51,6 +52,9 @@ public class BaseObject {
     public static boolean drawShadow = true;
     public static Vector2 directionShadow = new Vector2(-10f, -20f);
     public static float heightShadow = 15f;
+    public static Vector2 directionWind = new Vector2(0f, 10f);
+    public static float magnitudeWind = 3f;
+    public static boolean flushTextures = false;
     
 
     
@@ -69,6 +73,7 @@ public class BaseObject {
         //Factory Creates any spawnable objects, while manager manages them
         objManager = new ObjectManager();
         objFactory = new GameObjectFactory();
+        objParticleFactory = new GameParticleEffectObjectFactory();
         
         //public static CameraMainSystem cameraSystem; // CameraSystem
         collisionSystem = new CollisionMainSystem(); // Collision System
@@ -77,13 +82,12 @@ public class BaseObject {
         
         globalUnitObjData = new TreeMap();
 
-        //sSystemRegistry;
-        
         //TEXTURE LIBRARY, holds TEXTURE OBJECTS which contains the drawable id and openGL id
         mapLibrary = new TextureLibrary();
         objectLibrary = new TextureLibrary();
         effectsLibrary = new TextureLibrary();
-        uiLibrary = new TextureLibrary();
+        uiLibrary = new TextureLibrary();            
+        //sSystemRegistry;
 
         //List of Systems
         renderSystem = new RenderSystem();
@@ -103,6 +107,11 @@ public class BaseObject {
         globalLevelProperties = new GlobalLevelProperties();
         drawShadow = true;
         directionShadow = new Vector2(-10f, -20f);
-        heightShadow = 15f;       
+        heightShadow = 15f;
+        flushTextures = false;
+    }
+    
+    public static void resetAllTextures() {
+	
     }
 }

@@ -217,19 +217,19 @@ public class GameObjectFactory extends BaseObject {
         	shadowDrawable = null;
         }
         
-        GameUnitObject baseObjVehicleTires = new GameUnitObject( "Tire",
-        													"0000000", //default tire id
-        													"",
-                                                            (float)globalTankGraphicProperties.width, 
-                                                            (float)globalTankGraphicProperties.height,
-                                                            0, //relative X
-                                                            0, //relative Y
-                                                            defaultAngle,
-                                                            1,
-                                                            false,
-                                                            new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
-                                                            shadowDrawable, 
-                                                            null);
+        GameUnitObject baseObjVehicleTires = new GameUnitObject("Tire",
+            													"0000000", //default tire id
+            													"",
+                                                                (float)globalTankGraphicProperties.width, 
+                                                                (float)globalTankGraphicProperties.height,
+                                                                0, //relative X
+                                                                0, //relative Y
+                                                                defaultAngle,
+                                                                1,
+                                                                false,
+                                                                new DrawableBitmap(BaseObject.mapLibrary.addTextureToLibrary(resID), true),
+                                                                shadowDrawable, 
+                                                                null);
         
         baseObjVehicleTires.setCalculatedTranslateXY(mParentObjManager.getPosition().x, mParentObjManager.getPosition().y);        
         
@@ -400,7 +400,7 @@ public class GameObjectFactory extends BaseObject {
         AISubAttackComponent turretSubComponentAI = new AISubAttackComponent(inputTurretData.turretId);
         turretSubComponentAI.addControlPoint(turretUnitObj); //Reference to Turret so we can control it's angle
         for (int z = 0; z < inputTurretData.weapon.size(); z++){
-        	turretSubComponentAI.addWeaponData(BaseObject.contextGlobalXMLData.getWeaponId(inputTurretData.weapon.get(z)));
+        	turretSubComponentAI.addWeaponData(BaseObject.contextGlobalXMLData.getWeaponById(inputTurretData.weapon.get(z)));
         }
         
         
@@ -409,7 +409,7 @@ public class GameObjectFactory extends BaseObject {
         for (int i = 0; i < globalTurretProperties.weaponDataString.size(); i++){
         	//Parse the string
             globalTurretPropertyString = globalTurretProperties.weaponDataString.get(i).split("#");
-        	globalTurretGraphicAnimationProperties = BaseObject.contextGlobalXMLData.getGraphicAnimationId(globalTurretPropertyString[2]);
+        	globalTurretGraphicAnimationProperties = BaseObject.contextGlobalXMLData.getGraphicAnimationById(globalTurretPropertyString[2]);
         	resID = BaseObject.contextParameters.context.getResources().getIdentifier(globalTurretGraphicAnimationProperties.imageBase, "drawable", "com.electrofear");
         	
         	

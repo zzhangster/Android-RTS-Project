@@ -2,10 +2,14 @@ package com.electrofear;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 import javax.microedition.khronos.opengles.GL11Ext;
+
+import com.electrofear.parser.GlobalDataGraphic;
+import com.electrofear.parser.GlobalDataGraphicAnimation;
 
 
 
@@ -19,6 +23,9 @@ import android.opengl.GLUtils;
 public class TextureLibrary {
     public static int TEXTURE_SIZE = 1024;
     Texture[] mTextureLibraryHash;
+   
+    int[] texturePlaceHolder;
+    
     public static int currentIndexSize = 0;
     
     public TextureLibrary(){
@@ -26,6 +33,7 @@ public class TextureLibrary {
         for (int i = 0; i < mTextureLibraryHash.length; i++) {
             mTextureLibraryHash[i] = new Texture();
         }
+        texturePlaceHolder = new int[1];
     }
     
     //Loads a specific texture from R.drawable id
@@ -47,6 +55,42 @@ public class TextureLibrary {
             return null;
         }
     }
+    
+    //Load Preliminary textures into arrays
+    //Does not load the actual textures
+    protected void loadStaticTextureData() {
+        //Loads all graphics and animation graphics into texture library
+        ArrayList<GlobalDataGraphic> tempGraphic = BaseObject.contextGlobalXMLData.getAllGraphicStaticData();
+        ArrayList<GlobalDataGraphicAnimation> tempGraphicAnimation = BaseObject.contextGlobalXMLData.getAllAnimationGraphicStaticData();
+        
+        int resID = 0;
+        for (int i = 0; i < tempGraphic.size(); i++) {
+            resID = BaseObject.contextParameters.context.getResources().getIdentifier(tempGraphic.get(i).image, "drawable", "com.electrofear");
+            if (resID > 0) {
+                addTextureToLibrary(resID);
+            }
+        }
+        
+        //Load All Animation Textures
+        for (int i = 0; i < tempGraphicAnimation.size(); i++) {
+            if (tempGraphicAnimation.get(i).imageCount == 1) {
+                resID = BaseObject.contextParameters.context.getResources().getIdentifier(tempGraphicAnimation.get(i).imageBase, "drawable", "com.electrofear");
+                if (resID > 0) {
+                    addTextureToLibrary(resID);
+                }
+            } else {
+                //For image count > 1, we except the imageBase String + frame #   EX: anim_gfx_fir_type_01_frame is "imageBase" and "_1" is frame number
+                for (int j = 1; j < tempGraphicAnimation.get(i).imageCount + 1; j++) {
+                    resID = BaseObject.contextParameters.context.getResources().getIdentifier(tempGraphicAnimation.get(i).imageBase + "_" + j, "drawable", "com.electrofear");
+                    if (resID > 0) {
+                        addTextureToLibrary(resID);
+                    }                   
+                }             
+            }
+        }        
+        
+    }
+    
     
     //Loads all textures, checks if those are loaded and those that are not
     protected void loadAllTextures(Context context, GL10 gl) {
@@ -101,11 +145,11 @@ public class TextureLibrary {
     protected Texture loadBitmap(Context mContext, GL10 gl, Texture texture) {
         //Texture Test
         if (!texture.finishedLoading){
-            int[] textures = new int[1];
+            
             int[] mCropWorkspace = new int[4];
-            gl.glGenTextures(1, textures, 0);
+            gl.glGenTextures(1, texturePlaceHolder, 0);
         
-            int mTextureID = textures[0]; //OPENGL texture ID!
+            int mTextureID = texturePlaceHolder[0]; //OPENGL texture ID!
             gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureID);
         
             gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
@@ -146,5 +190,15 @@ public class TextureLibrary {
         }
         
         return texture;
+    }
+    
+    public void removeAll(GL10 gl) {
+    	for (int x= 0; x < mTextureLibraryHash.length; x++) {
+    		if (mTextureLibraryHash[x].rawResourceId != -1) {
+    			texturePlaceHolder[0] = mTextureLibraryHash[x].nameId;
+    			gl.glDeleteTextures(1, texturePlaceHolder, 0);
+    		}
+    	}
+    	
     }
 }

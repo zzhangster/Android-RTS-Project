@@ -10,6 +10,7 @@ public class GlobalParsedXMLDataRepository {
     private ArrayList<GlobalDataGraphic> mGraphic;
     private ArrayList<GlobalDataGraphicAnimation> mGraphicAnimation;
     private ArrayList<GlobalDataWeapon> mWeapon;
+    private ArrayList<GlobalDataParticle> mParticle;
     
     
     
@@ -22,13 +23,37 @@ public class GlobalParsedXMLDataRepository {
         mGraphic = new ArrayList();
         mWeapon = new ArrayList();
         mGraphicAnimation = new ArrayList();
+        mParticle = new ArrayList();
     }
 
+    public void addParticle(GlobalDataParticle inputParticle){
+        mParticle.add(inputParticle);
+    }
+
+    public GlobalDataParticle getParticleById(String id){
+        GlobalDataParticle iterateParticle;
+        for (int i = 0; i < mParticle.size(); i++) {
+            iterateParticle = mParticle.get(i); 
+            if (iterateParticle.objectId.equals(id)){
+                return iterateParticle;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<GlobalDataGraphic> getAllGraphicStaticData () {
+        return mGraphic;
+    }
+    
+    public ArrayList<GlobalDataGraphicAnimation> getAllAnimationGraphicStaticData () {
+        return mGraphicAnimation;
+    }    
+        
     public void addGraphicAnimation(GlobalDataGraphicAnimation inputGraphicAnimation){
         mGraphicAnimation.add(inputGraphicAnimation);
     }
 
-    public GlobalDataGraphicAnimation getGraphicAnimationId(String id){
+    public GlobalDataGraphicAnimation getGraphicAnimationById(String id){
         GlobalDataGraphicAnimation iterateGraphicAnimation;
         for (int i = 0; i < mGraphicAnimation.size(); i++) {
             iterateGraphicAnimation = mGraphicAnimation.get(i); 
@@ -43,7 +68,7 @@ public class GlobalParsedXMLDataRepository {
         mWeapon.add(inputWeapon);
     }
 
-    public GlobalDataWeapon getWeaponId(String id){
+    public GlobalDataWeapon getWeaponById(String id){
         GlobalDataWeapon iterateWeapon;
         for (int i = 0; i < mWeapon.size(); i++) {
             iterateWeapon = mWeapon.get(i); 

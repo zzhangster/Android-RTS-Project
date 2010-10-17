@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 import com.electrofear.GameObjectFactory.GameObjectType;
+import com.electrofear.GameParticleEffectObjectFactory.GameParticleObjectType;
 import com.electrofear.level.GlobalLevelProperties;
 import com.electrofear.parser.GlobalDataGraphic;
 import com.electrofear.parser.GlobalDataVehicle;
@@ -87,6 +88,9 @@ public class LevelSystem {
         //mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACSCOUT, 50, 200); //Generate NACSCOUT at position 30, 30
         //root.add(mGameObject);
         
+        //LOAD ALL STATIC DATA TO TEXTURE!
+        BaseObject.mapLibrary.loadStaticTextureData();
+        
         mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACHEAVYTANK, 250, 250, true); //Generate NACSCOUT at position 30, 30
         root.add(mGameObject);
         
@@ -95,7 +99,14 @@ public class LevelSystem {
         
         mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACSCOUT, 250, 90, false); //Generate NACSCOUT at position 30, 30
         root.add(mGameObject);   
-       
+
+        
+        //SET TO 21 and 22 because fauna "TREES" is currently set to 20 in map_level_1.xml; will need to change this
+        mGameObject = BaseObject.objParticleFactory.spawn(GameParticleObjectType.FIRE_01, 100, 450, 22);
+        root.add(mGameObject);        
+        
+        mGameObject = BaseObject.objParticleFactory.spawn(GameParticleObjectType.SMOKE_01, 100, 450, 21);
+        root.add(mGameObject);
         //mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACWALKER, 190, 230); //Generate NACSCOUT at position 30, 30
         //root.add(mGameObject);
     }

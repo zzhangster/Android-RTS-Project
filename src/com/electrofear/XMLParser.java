@@ -11,6 +11,7 @@ import com.electrofear.parser.GlobalDataFaction;
 import com.electrofear.parser.GlobalDataGraphic;
 import com.electrofear.parser.GlobalDataGraphicAnimation;
 import com.electrofear.parser.GlobalDataInfantry;
+import com.electrofear.parser.GlobalDataParticle;
 import com.electrofear.parser.GlobalDataTurret;
 import com.electrofear.parser.GlobalDataUnitSubTurretData;
 import com.electrofear.parser.GlobalDataVehicle;
@@ -39,8 +40,52 @@ public class XMLParser {
         
     }
     
+    //Parse Particle Rules Page
+    public static void startParsingParticlesRules(Document inputDom) {
+        GlobalParsedXMLDataRepository contextGlobalXMLData = BaseObject.contextGlobalXMLData;
+        //PARSE THE FACTIONS
+        GlobalDataParticle tempParticleParseObject;
+        Element root = inputDom.getDocumentElement();
+        NodeList items = root.getElementsByTagName("Particles");
+        NodeList subItems = ((Element)items.item(0)).getElementsByTagName("PARTICLE");
+        for(int i = 0; i < subItems.getLength(); i++){
+            tempParticleParseObject = new GlobalDataParticle();
+            Element element = (Element) subItems.item(i);
+            tempParticleParseObject.objectId = element.getElementsByTagName("ObjectId").item(0).getFirstChild().getNodeValue();
+            tempParticleParseObject.particleNumber = Integer.valueOf(element.getElementsByTagName("Particles").item(0).getFirstChild().getNodeValue());
+            tempParticleParseObject.spreadType = element.getElementsByTagName("ParticleSpreadType").item(0).getFirstChild().getNodeValue();
+            tempParticleParseObject.spreadRadius = Float.valueOf(element.getElementsByTagName("ParticleSpreadRadius").item(0).getFirstChild().getNodeValue());
+            tempParticleParseObject.particleEmitterTime = Float.valueOf(element.getElementsByTagName("ParticleEmmiterSpread").item(0).getFirstChild().getNodeValue());
+            tempParticleParseObject.particlesType = element.getElementsByTagName("ParticlesType").item(0).getFirstChild().getNodeValue();
+            tempParticleParseObject.particleDuration = Float.valueOf(element.getElementsByTagName("ParticleDuration").item(0).getFirstChild().getNodeValue());
+            tempParticleParseObject.particleDeviation = Float.valueOf(element.getElementsByTagName("ParticleDurationDeviation").item(0).getFirstChild().getNodeValue());
+            tempParticleParseObject.particleAlpha = element.getElementsByTagName("ParticleAlpha").item(0).getFirstChild().getNodeValue();
+            tempParticleParseObject.particleSize = element.getElementsByTagName("ParticleSize").item(0).getFirstChild().getNodeValue();
+            tempParticleParseObject.particleGraphic = element.getElementsByTagName("ParticleGraphic").item(0).getFirstChild().getNodeValue();
+            BaseObject.contextGlobalXMLData.addParticle(tempParticleParseObject);
+        }
+        
+        //Parse Turret Here
+        GlobalDataGraphicAnimation tempGraphicAnimationParserObj;
+        items = root.getElementsByTagName("ANIMATEDGRAPHICS");
+        subItems = ((Element)items.item(0)).getElementsByTagName("AnimationGraphics");       
+        for(int i = 0; i < subItems.getLength(); i++){
+            tempGraphicAnimationParserObj = new GlobalDataGraphicAnimation();
+            Element element = (Element) subItems.item(i);
+            tempGraphicAnimationParserObj.nameId = element.getElementsByTagName("NameId").item(0).getFirstChild().getNodeValue();
+            tempGraphicAnimationParserObj.height = Double.valueOf(element.getElementsByTagName("Height").item(0).getFirstChild().getNodeValue());
+            tempGraphicAnimationParserObj.width = Double.valueOf(element.getElementsByTagName("Width").item(0).getFirstChild().getNodeValue());
+            tempGraphicAnimationParserObj.imageBase = element.getElementsByTagName("ImageBase").item(0).getFirstChild().getNodeValue();
+            tempGraphicAnimationParserObj.imageCount = Double.valueOf(element.getElementsByTagName("ImageCount").item(0).getFirstChild().getNodeValue());
+            
+            BaseObject.contextGlobalXMLData.addGraphicAnimation(tempGraphicAnimationParserObj);
+            
+        }             
+    }
+    
+    
     //Parse RULES PAGE
-    public static void startParsing(Document inputDom) {
+    public static void startParsingRules(Document inputDom) {
         GlobalParsedXMLDataRepository contextGlobalXMLData = BaseObject.contextGlobalXMLData;
         //PARSE THE FACTIONS
         GlobalDataFaction tempFactionParserObj;
@@ -327,6 +372,11 @@ public class XMLParser {
             //PUT PARSE OBJ TO GLOBAL static array
             BaseObject.globalUnitObjData.put(tempParserObj.objectID, tempParserObj);
         }
+        
+    }
+
+    public static void startParsingParticleRules(Document dom) {
+        // TODO Auto-generated method stub
         
     }
 }

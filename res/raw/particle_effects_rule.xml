@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RULES>
+
+	<Particles>
+
+		<PARTICLE>
+			<ObjectId>FIRE_EMMITER_01</ObjectId>
+			<Particles>50</Particles> <!-- How Many Particles from emmiter per duration -->
+			<ParticleSpreadType>CIRCLE</ParticleSpreadType> <!-- Can be circle or square, refer to GameParticleEffectObjectFactory -->
+			<ParticleSpreadRadius>30</ParticleSpreadRadius> <!-- Radius controls size of emitter -->
+			<ParticleEmmiterSpread>10</ParticleEmmiterSpread> <!-- Time it takes to emmit another 50 particles! -->
+			<ParticlesType>Fire_01</ParticlesType> <!-- What kind of type it is => Fire01 , Smoke01, etc will define behavior 
+				later -->
+			<ParticleDuration>300</ParticleDuration> <!-- Duration of particle -->
+			<ParticleDurationDeviation>100</ParticleDurationDeviation> <!-- Deviation from duration, in this case: between 200 and 400 -->
+			<ParticleSize>LINEAR_ENLARGE</ParticleSize>
+			<ParticleAlpha>LINEAR_FADING</ParticleAlpha> <!-- How the particle will disappear CONSTANT => not alpha, disappears after 
+				duration LINEAR_FADING => Gradually fade out of view till duration LINEAR_APPEAR_FADE 
+				=> Gradually appear then fade again till duration -->
+			<ParticleGraphic>ANIM_FIRE_EMMITER_01</ParticleGraphic>
+		</PARTICLE>
+
+		<PARTICLE>
+			<ObjectId>SMOKE_EMMITER_01</ObjectId>
+			<Particles>50</Particles> <!-- How Many Particles from emmiter per duration -->
+			<ParticleSpreadType>CIRCLE</ParticleSpreadType> <!-- Can be circle or square, refer to GameParticleEffectObjectFactory -->
+			<ParticleSpreadRadius>30</ParticleSpreadRadius> <!-- Radius controls size of emitter -->
+			<ParticleEmmiterSpread>10</ParticleEmmiterSpread> <!-- Time it takes to emmit another 50 particles! -->
+			<ParticlesType>Fire_01</ParticlesType> <!-- What kind of type it is => Fire01 , Smoke01, etc will define behavior 
+				later -->
+			<ParticleDuration>300</ParticleDuration> <!-- Duration of particle -->
+			<ParticleDurationDeviation>100</ParticleDurationDeviation> <!-- Deviation from duration, in this case: between 200 and 400 -->
+			<ParticleSize>LINEAR_ENLARGE</ParticleSize>
+			<ParticleAlpha>UNFADE_FADE</ParticleAlpha> <!-- How the particle will disappear CONSTANT => not alpha, disappears after 
+				duration LINEAR_FADING => Gradually fade out of view till duration LINEAR_APPEAR_FADE 
+				=> Gradually appear then fade again till duration -->
+			<ParticleGraphic>ANIM_SMOKE_EMMITER_01</ParticleGraphic>
+		</PARTICLE>
+
+	</Particles>
+
+	<!-- ================================================================ ANIMATEDGRAPHICS All animated graphics ================================================================ -->
+	<ANIMATEDGRAPHICS>
+
+		<AnimationGraphics>
+			<NameId>ANIM_FIRE_EMMITER_01</NameId>
+			<Height>30</Height>
+			<Width>30</Width>
+			<ImageBase>anim_gfx_fire_type_01_frame</ImageBase>
+			<ImageCount>2</ImageCount>
+		</AnimationGraphics>
+
+		<AnimationGraphics>
+			<NameId>ANIM_SMOKE_EMMITER_01</NameId>
+			<Height>40</Height>
+			<Width>40</Width>
+			<ImageBase>anim_gfx_smoke_type_01_frame</ImageBase>
+			<ImageCount>9</ImageCount>
+		</AnimationGraphics>
+
+	</ANIMATEDGRAPHICS>
+
+</RULES>

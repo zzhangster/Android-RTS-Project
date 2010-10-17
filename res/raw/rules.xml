@@ -235,7 +235,7 @@
 		<Height>6</Height>
 		<Width>38</Width>
 		<ImageBase>anim_gfx_nac_scout_jeep_mg_gun</ImageBase>
-		<ImageCount>5</ImageCount>
+		<ImageCount>1</ImageCount>
 	</AnimationGraphics>       
        
 	<AnimationGraphics>
@@ -243,7 +243,7 @@
 		<Height>16</Height>
 		<Width>96</Width>
 		<ImageBase>anim_gfx_nac_tnk_gun</ImageBase>
-		<ImageCount>5</ImageCount>
+		<ImageCount>1</ImageCount>
 	</AnimationGraphics>
 	
 	<AnimationGraphics>
@@ -251,7 +251,7 @@
 		<Height>7</Height>
 		<Width>21</Width>
 		<ImageBase>anim_gfx_nac_mg_gun</ImageBase>
-		<ImageCount>5</ImageCount>
+		<ImageCount>1</ImageCount>
 	</AnimationGraphics>	
 
     <AnimationGraphics>
@@ -259,7 +259,7 @@
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_120mm_fire</ImageBase>
-        <ImageCount>5</ImageCount>        
+        <ImageCount>1</ImageCount>        
     </AnimationGraphics>
     
     <AnimationGraphics>
@@ -267,7 +267,7 @@
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_30mm_fire</ImageBase>
-        <ImageCount>5</ImageCount>        
+        <ImageCount>1</ImageCount>        
     </AnimationGraphics>
    
     <AnimationGraphics>
@@ -275,35 +275,35 @@
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>
     <AnimationGraphics>
         <NameId>ANIM_NAC_LIGHT_INFANTRY_FIRECRAWL</NameId>
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>        
      <AnimationGraphics>
         <NameId>ANIM_NAC_LIGHT_INFANTRY_IDLE</NameId>
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>       
     <AnimationGraphics>
         <NameId>ANIM_NAC_LIGHT_INFANTRY_CRAWL</NameId>
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>
     <AnimationGraphics>
         <NameId>ANIM_NAC_LIGHT_INFANTRY_WALK</NameId>
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>
     
     <AnimationGraphics>
@@ -311,7 +311,7 @@
         <Height>30</Height>
         <Width>40</Width>
         <ImageBase>anim_gfx_nac_light_infantry_fire</ImageBase>
-        <ImageCount>5</ImageCount>              
+        <ImageCount>1</ImageCount>              
     </AnimationGraphics>
 
 </ANIMATEDGRAPHICS>

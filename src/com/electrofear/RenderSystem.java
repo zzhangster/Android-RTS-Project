@@ -14,11 +14,12 @@ public class RenderSystem {
         }
     }
     
-    public void setRenderQueue(GameRenderer renderer, float cameraX, float cameraY){
-        renderer.setDrawQueue(mRenderQueues[renderQueueIndex], cameraX, cameraY); 
+    public void sortCurrentRenderQueue(){
+        
     }
     
     public void swapQueue(GameRenderer renderer, float cameraX, float cameraY){
+        mRenderQueues[renderQueueIndex].sortArray();
         renderer.setDrawQueue(mRenderQueues[renderQueueIndex], cameraX, cameraY);
         
         //Clear Current view for placement

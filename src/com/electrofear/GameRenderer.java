@@ -27,6 +27,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
     private float cameraY;
     private Context mContext;
     private Game mGame;
+    private GL10 trackedGl;
     private OrderedRenderObjectManager mDrawQueue;
     private float mScaleX;
     private float mScaleY;
@@ -43,7 +44,7 @@ public class GameRenderer implements GLSurfaceView.Renderer{
 
     public void onDrawFrame(GL10 gl) {
     	Vector3 cameraPosition,cameraLookAt;
-    	
+    	trackedGl = gl;
     	
         long time = SystemClock.uptimeMillis();
         long time_delta = (time - mLastTime);
@@ -78,11 +79,18 @@ public class GameRenderer implements GLSurfaceView.Renderer{
                 
                 ArrayList<BaseObject> objectDrawList = mDrawQueue.getMObjectList();
                 for (int i = 0; i < objectDrawList.size(); i++){
-                    DrawableBitmap temp = (DrawableBitmap) (objectDrawList.get(i));
                     
-                    gl.glPushMatrix();
-                    temp.startDrawing(gl);
-                    gl.glPopMatrix();
+                    DrawableObject temp = null;
+                    if (objectDrawList.get(i).getClass() == DrawableBitmap.class) {
+                        temp = (DrawableBitmap) (objectDrawList.get(i));
+                    } else if (objectDrawList.get(i).getClass() == DrawableAnimationBitmap.class) {
+                        temp = (DrawableAnimationBitmap) (objectDrawList.get(i));
+                    }
+                    if (temp != null) {
+                        gl.glPushMatrix();
+                        temp.startDrawing(gl);
+                        gl.glPopMatrix();
+                    }
                 } 
             }
         }
@@ -100,8 +108,10 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         //TODO: synchronize the queue or use a draw lock!
     }
     
+    
     //ANOTHER RENDERER FUNCTION, ON SURFACECHANGED MEANS
     public void onSurfaceChanged(GL10 gl, int w, int h) {
+    	trackedGl = gl;
         //mWidth = w;0
         //mHeight = h;
         // ensure the same aspect ratio as the game
@@ -126,8 +136,18 @@ public class GameRenderer implements GLSurfaceView.Renderer{
         //Bad because we still have texture in memory if we decide to quit
         
     }
+    
+    public synchronized void clearAllTextures(){
+        BaseObject.mapLibrary.removeAll(trackedGl);
+        BaseObject.objectLibrary.removeAll(trackedGl);
+        BaseObject.effectsLibrary.removeAll(trackedGl);
+        BaseObject.uiLibrary.removeAll(trackedGl);     
+    }
+    
+
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+    	trackedGl = gl;
         // Initialize GL
         gl.glDisable(GL10.GL_DITHER);                       //Disable dithering
         gl.glEnable(GL10.GL_TEXTURE_2D);                    //Enable Texture Mapping
@@ -198,8 +218,5 @@ public class GameRenderer implements GLSurfaceView.Renderer{
                 GL11Ext.GL_TEXTURE_CROP_RECT_OES, mCropWorkspace, 0);
 
     }*/
-    
-    public synchronized void waitDrawingComplete() {
-    }
 
 }

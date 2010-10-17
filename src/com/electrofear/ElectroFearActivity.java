@@ -97,21 +97,26 @@ public class ElectroFearActivity extends Activity implements SensorEventListener
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            
-            //Parse Tank Data
             InputStream in = this.getResources().openRawResource(R.raw.rules); 
             Document dom = builder.parse(in);
-            XMLParser.startParsing(dom);
-            
-            //Parse Infantry Data
-            
-
+            XMLParser.startParsingRules(dom);
         } catch (Exception e) {
             throw new RuntimeException(e);
         } 
+        
+        
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputStream in = this.getResources().openRawResource(R.raw.particle_effects_rule); 
+            Document dom = builder.parse(in);
+            XMLParser.startParsingParticlesRules(dom);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } 
+        
+        
         return "";
     }
-
 
     
     @Override

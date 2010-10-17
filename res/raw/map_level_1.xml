@@ -12,7 +12,7 @@
 	<CameraStartCoord>
 		<StartCoordX>165</StartCoordX>
 		<StartCoordY>200</StartCoordY>
-		<StartCoordZ>600</StartCoordZ>
+		<StartCoordZ>800</StartCoordZ>
 	</CameraStartCoord>
 		
 	<!-- Weather Properties and Other global properties -->
@@ -35,7 +35,7 @@
 	<!-- Objects in Map -->
 	<MapObjects>
 	
-		<!-- lit136.lex
+		<!--
 		====================
 		== MAP VEGETATION ==
 		==================== 

@@ -22,7 +22,7 @@ public class GameThread implements Runnable{
             	mRenderer.checkRenderingIsFinshed();                
                 final long time = SystemClock.uptimeMillis();
                 final long timeDelta = time - mLastTime;
-                long finalDelta = timeDelta;
+
                 if (timeDelta > 12) {
                     float secondsDelta = (time - mLastTime) * 0.001f;
                     if (secondsDelta > 0.1f) {
@@ -34,16 +34,20 @@ public class GameThread implements Runnable{
                     //TODO get camera positions and pass below
                     //This calls the setRenderQueue in render system which will eventually set the rendering thread to
                     //a queue of objects
+                    
                     BaseObject.renderSystem.swapQueue(mRenderer, 10f, 10f);
-                }
-                else {
+                    
+                    mLastTime = SystemClock.uptimeMillis();
+                } else {
                     
                 }
             }
 
         }
         BaseObject.renderSystem.emptyQueues(mRenderer);
-        BaseObject.resetAllElements();
+        mRenderer.clearAllTextures(); //Clear all textures 
+        BaseObject.resetAllElements(); // resets everything except textures
+
     }
     
     public GameThread(GameRenderer renderer) {

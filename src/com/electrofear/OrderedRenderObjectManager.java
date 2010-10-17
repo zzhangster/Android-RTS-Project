@@ -50,7 +50,7 @@ public class OrderedRenderObjectManager extends ObjectManager{
 	public void add(BaseObject object) {
         // TODO Auto-generated method stub
             mObjectList.add(object);
-            sortArray();
+            //sortArray();
     }
     
     public void sortArray(){
@@ -61,7 +61,7 @@ public class OrderedRenderObjectManager extends ObjectManager{
         public int compare(BaseObject object1, BaseObject object2) {
             int result = 0;
             if (object1 != null && object2 != null) {
-                float temp = (((DrawableBitmap) object1).zAxis - ((DrawableBitmap) object2).zAxis);
+                float temp = (((DrawableObject) object1).zAxis - ((DrawableObject) object2).zAxis);
                 if(temp > 0) { 
                 	return 1;
                 } else {
