@@ -91,13 +91,13 @@ public class LevelSystem {
         //LOAD ALL STATIC DATA TO TEXTURE!
         BaseObject.mapLibrary.loadStaticTextureData();
         
-        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACHEAVYTANK, 250, 250, true); //Generate NACSCOUT at position 30, 30
+        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACHEAVYTANK, 250, 90, 90, true); //Generate NACSCOUT at position 30, 30
         root.add(mGameObject);
         
-        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACHEAVYTANK, 100, 90, false); //Generate NACSCOUT at position 30, 30
+        mGameObject = BaseObject.objFactory.spawn(GameObjectType.AKAHEAVYTANK, 100, 1300, 270, true); //Generate NACSCOUT at position 30, 30
         root.add(mGameObject);     
         
-        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACSCOUT, 250, 90, false); //Generate NACSCOUT at position 30, 30
+        mGameObject = BaseObject.objFactory.spawn(GameObjectType.NACSCOUT, 250, 250, 90, false); //Generate NACSCOUT at position 30, 30
         root.add(mGameObject);   
 
         

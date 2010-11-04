@@ -39,7 +39,6 @@ public class GameThread implements Runnable{
                     
                     mLastTime = SystemClock.uptimeMillis();
                 } else {
-                    
                 }
             }
 

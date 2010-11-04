@@ -6,6 +6,7 @@ public class GameUnitObject extends GameObject {
     private float zAxis;
     private float height, width;
     private float angle, defaultAngle;
+    private Vector2 facing;
     private float turnRate; //angle per second
     private float relativeX, relativeY; //relative to parent
     private float calculatedX, calculatedY;
@@ -184,16 +185,23 @@ public class GameUnitObject extends GameObject {
         this.mChildGameUnitObj.add(obj);
     }
     
+    
+    /* Updates the coordinates X, Y and also the Angle of BaseObject is facing */
     @Override
 	public void update(float timeDelta, BaseObject parent){
     	GameObject unitParent = (GameObject)parent;
     	Vector2 parentPosition = unitParent.getPosition();
     	this.setCalculatedTranslateXY(parentPosition.x, parentPosition.y);
     	
+    	//Find unitParent direction vector and then convert it into angle to set
+    	this.setAngle(unitParent.getAngle());
+    	
+    	
         //calculate everything
         this.calculate();
         this.scheduleDrawables();
     }
+    
     
     //Schedulecurrentdrawable and then go down list and then create all child drawables
     public void scheduleDrawables(){

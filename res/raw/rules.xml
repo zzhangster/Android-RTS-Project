@@ -51,7 +51,7 @@
   -->
   
 <UNITSTATISTICS>
-    <!-- Vehicles -->
+    <!-- NAC HEAVY TANK -->
     <VEHICLE>
         <ObjectId>NAC_HVY_TNK</ObjectId>
         <InternalId>00001</InternalId>
@@ -59,7 +59,7 @@
         <OwnerName>NAC</OwnerName>
         
         <Speed>20</Speed>
-        <Acceleration>2</Acceleration>
+        <Acceleration>10</Acceleration>
         <RotateRate>5</RotateRate>
         <Tracked>true</Tracked>
         <PointCost>500</PointCost>
@@ -86,6 +86,42 @@
         </UnitTurret>        
     </VEHICLE>
     
+    <!-- AKAZIAN HEAVY TANK -->
+    <VEHICLE>
+        <ObjectId>AKA_HVY_TNK</ObjectId>
+        <InternalId>00001</InternalId>
+        <Name>Alkazian Heavy Tank</Name>
+        <OwnerName>AKA</OwnerName>
+        
+        <Speed>20</Speed>
+        <Acceleration>10</Acceleration>
+        <RotateRate>5</RotateRate>
+        <Tracked>true</Tracked>
+        <PointCost>500</PointCost>
+        <UnitHP>800</UnitHP>
+        <GraphicId>GFX_AKA_HEAVY_TANK</GraphicId>
+        <TrackGraphicId>NULL</TrackGraphicId>
+        
+        <!-- CAN HAVE MULTIPLE TURRETS TOO! and also subturrets of turrets -->
+        <UnitTurret>
+            <InternalId>00002</InternalId>
+            <TurretId>AKA_HVY_TNK_MAIN_TURRET</TurretId>
+            <RelativeToID>00001</RelativeToID>
+            <TurretOffSetX>-2</TurretOffSetX>
+            <TurretOffsetY>0</TurretOffsetY>
+            <Weapon>130MM</Weapon> <!-- CAN HAVE MULTIPLE ITEMS -->
+        </UnitTurret>
+        <UnitTurret>
+            <InternalId>00003</InternalId>
+            <TurretId>AKA_HVY_TNK_MG_TURRET</TurretId>
+            <RelativeToID>00002</RelativeToID>
+            <TurretOffSetX>-45</TurretOffSetX>
+            <TurretOffsetY>20</TurretOffsetY>
+            <Weapon>30MM</Weapon>
+        </UnitTurret>        
+    </VEHICLE>    
+    
+    <!-- NAC SCOUT JEEP -->
     <VEHICLE>
         <ObjectId>NAC_SCOUT_JEEP</ObjectId>
         <InternalId>00001</InternalId>
@@ -93,7 +129,7 @@
         <OwnerName>NAC</OwnerName>
         
         <Speed>20</Speed>
-        <Acceleration>2</Acceleration>
+        <Acceleration>20</Acceleration>
         <RotateRate>5</RotateRate>
         <Tracked>true</Tracked>
         <PointCost>300</PointCost>
@@ -161,6 +197,20 @@
    </TURRET>
    
    <TURRET>
+       <TurretId>AKA_HVY_TNK_MAIN_TURRET</TurretId>
+       <GraphicId>GFX_AKA_HVY_TNK_MAIN_TURRET</GraphicId>
+	   <WeaponOffSet>140#0#ANIM_AKA_HVY_GUN</WeaponOffSet>
+       <RotateRate>5</RotateRate>
+   </TURRET> 
+   
+   <TURRET>
+       <TurretId>AKA_HVY_TNK_MG_TURRET</TurretId>
+       <GraphicId>GFX_AKA_HVY_TNK_MG_TURRET</GraphicId>
+       <WeaponOffSet>44#-2#ANIM_AKA_MG_GUN</WeaponOffSet>
+       <RotateRate>20</RotateRate>
+   </TURRET>   
+   
+   <TURRET>
 	   <TurretId>NAC_SCOUT_JEEP_MG_TURRET</TurretId>
        <GraphicId>GFX_NAC_HVY_TNK_MG_TURRET</GraphicId>
        <WeaponOffSet>20#0#ANIM_NAC_MG_GUN</WeaponOffSet>
@@ -184,7 +234,7 @@
         <Damage>5</Damage>
         <TypeDamage>Light</TypeDamage>
         <ROF>4</ROF>
-        <Range>100</Range>
+        <Range>200</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>NONE</AnimatedGraphicsFireId> <!-- Should be done with soldier animation -->
@@ -197,7 +247,7 @@
         <Damage>300</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>40</ROF>
-        <Range>300</Range>
+        <Range>500</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_120MM_FIRE</AnimatedGraphicsFireId>
@@ -209,7 +259,7 @@
         <Damage>10</Damage>
         <TypeDamage>AP</TypeDamage>
         <ROF>2</ROF>
-        <Range>150</Range>
+        <Range>250</Range>
         <Speed>120</Speed>
         <BallisticType>DirectLine</BallisticType>
         <AnimatedGraphicsFireId>ANIM_GFX_30MM_FIRE</AnimatedGraphicsFireId>
@@ -251,6 +301,22 @@
 		<Height>7</Height>
 		<Width>21</Width>
 		<ImageBase>anim_gfx_nac_mg_gun</ImageBase>
+		<ImageCount>1</ImageCount>
+	</AnimationGraphics>	
+
+	<AnimationGraphics>
+		<NameId>ANIM_AKA_HVY_GUN</NameId>
+		<Height>27</Height>
+		<Width>135</Width>
+		<ImageBase>anim_gfx_aka_tnk_gun</ImageBase>
+		<ImageCount>1</ImageCount>
+	</AnimationGraphics>
+	
+	<AnimationGraphics>
+		<NameId>ANIM_AKA_MG_GUN</NameId>
+		<Height>16</Height>
+		<Width>67</Width>
+		<ImageBase>anim_gfx_aka_mg_gun</ImageBase>
 		<ImageCount>1</ImageCount>
 	</AnimationGraphics>	
 
@@ -350,6 +416,13 @@
     </Graphics>
     
     <Graphics>
+        <NameId>GFX_AKA_HEAVY_TANK</NameId>
+        <Height>114</Height>
+        <Width>214</Width>
+        <Image>aka_heavy_tank_chasis</Image>
+    </Graphics>    
+    
+    <Graphics>
     	<NameId>GFX_NAC_SCOUT_JEEP_TIRES</NameId>
         <Height>93</Height>
         <Width>128</Width>
@@ -371,6 +444,13 @@
     </Graphics>
     
     <Graphics>
+        <NameId>GFX_AKA_HVY_TNK_MAIN_TURRET</NameId>
+        <Height>114</Height>
+        <Width>179</Width>
+        <Image>aka_heavy_tank_turret</Image>
+    </Graphics>    
+    
+    <Graphics>
         <NameId>GFX_NAC_SCOUT_JEEP_MG_TURRET</NameId>
         <Height>38</Height>
         <Width>36</Width>
@@ -383,6 +463,13 @@
         <Width>35</Width>
         <Image>nac_heavy_tank_mg_turret</Image>
     </Graphics>
+    
+    <Graphics>
+        <NameId>GFX_AKA_HVY_TNK_MG_TURRET</NameId>
+        <Height>27</Height>
+        <Width>49</Width>
+        <Image>aka_heavy_tank_mg_turret</Image>
+    </Graphics>    
 
     <Graphics>
         <NameId>FAUNA_TREE_GROUP_LEFT_01</NameId>

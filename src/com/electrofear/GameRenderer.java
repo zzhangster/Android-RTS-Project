@@ -95,6 +95,12 @@ public class GameRenderer implements GLSurfaceView.Renderer{
             }
         }
         
+        try {
+            Thread.sleep(16);
+        } catch (InterruptedException e) {
+            // Interruptions here are no big deal.
+        }
+        
     }
     
     public synchronized void checkRenderingIsFinshed(){

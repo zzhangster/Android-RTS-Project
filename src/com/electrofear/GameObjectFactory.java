@@ -104,7 +104,7 @@ public class GameObjectFactory extends BaseObject {
         BROBOT_BULLET(67),
         BREAKABLE_BLOCK_PIECE(68),
         BREAKABLE_BLOCK_PIECE_SPAWNER(69),
-        WANDA_SHOT(70);
+        WANDA_SHOT(70), AKAHEAVYTANK(71);
         
         private final int mIndex;
         GameObjectType(int index) {
@@ -112,17 +112,20 @@ public class GameObjectFactory extends BaseObject {
         }
     }
         
-    public GameObject spawn(GameObjectType type, float x, float y, boolean testingTOBEREMOVED) {
+    public GameObject spawn(GameObjectType type, float x, float y, float facingAngle, boolean testingTOBEREMOVED) {
         GameObject newObject = null;
         switch (type){
             case NACWALKER:
                 newObject = spawnNACHeavyMech(x,y);
                 break;
             case NACHEAVYTANK:
-                newObject = spawnNACHeavyTank(x,y,1, testingTOBEREMOVED);
+                newObject = spawnNACHeavyTank(x,y,1,facingAngle,testingTOBEREMOVED);
                 break;
+            case AKAHEAVYTANK:
+                newObject = spawnAKAHeavyTank(x,y,1,facingAngle,testingTOBEREMOVED);
+                break;                
             case NACSCOUT:
-                newObject = spawnNACScoutJeep(x,y,1, testingTOBEREMOVED);
+                newObject = spawnNACScoutJeep(x,y,1,facingAngle,testingTOBEREMOVED);
                 break;
             case NACAFV:
                 newObject = spawnNACAFV(x,y);
@@ -147,7 +150,7 @@ public class GameObjectFactory extends BaseObject {
     }
     
     //SPAWNS HEAVY TANK - ObjectGameManager 
-    private GameObject spawnNACHeavyTank(float x, float y, float ratio, boolean testingTOBEREMOVED) {
+    private GameObject spawnNACHeavyTank(float x, float y, float ratio, float facingAngle, boolean testingTOBEREMOVED) {
         // A method to create heavy tank
         // Create a two animation component for treads or one
         // Create one base render component (hull)
@@ -156,6 +159,7 @@ public class GameObjectFactory extends BaseObject {
 
         GameObject nacHeavyTankObjManager = new GameObject();
         nacHeavyTankObjManager.setPosition(x, y);
+        nacHeavyTankObjManager.setAngle(facingAngle);
         nacHeavyTankObjManager.setFaction("NACTEST");
         nacHeavyTankObjManager.setObjectId("TANK");
         nacHeavyTankObjManager.setMovable(testingTOBEREMOVED);
@@ -165,7 +169,7 @@ public class GameObjectFactory extends BaseObject {
         
         //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
         //COMPONENTS FOR ANY TURRETS AVALIABLE
-        spawnTrackedVehicleComponents(nacHeavyTankObjManager, "NAC_HVY_TNK", 90);
+        spawnTrackedVehicleComponents(nacHeavyTankObjManager, "NAC_HVY_TNK", facingAngle);
         
         
         //CREATES MOVEMENT
@@ -179,10 +183,45 @@ public class GameObjectFactory extends BaseObject {
         
         return nacHeavyTankObjManager;
     }
+    
+    //SPAWNS HEAVY TANK - ObjectGameManager 
+    private GameObject spawnAKAHeavyTank(float x, float y, float ratio, float facingAngle, boolean testingTOBEREMOVED) {
+        // A method to create heavy tank
+        // Create a two animation component for treads or one
+        // Create one base render component (hull)
+        // Create one render component (turret/MAINGUN)
+        // Create one render component (turrent MG)
+
+        GameObject akaHeavyTankObjManager = new GameObject();
+        akaHeavyTankObjManager.setPosition(x, y);
+        akaHeavyTankObjManager.setAngle(facingAngle);
+        akaHeavyTankObjManager.setFaction("AKATEST");
+        akaHeavyTankObjManager.setObjectId("TANK");
+        akaHeavyTankObjManager.setMovable(testingTOBEREMOVED);
+        
+        
+        
+        
+        //ADDS GRAPHIC COMPONENTS TO NACHEAVYTANKOBJMANAGER AND ALSO ADD SUB AI
+        //COMPONENTS FOR ANY TURRETS AVALIABLE
+        spawnTrackedVehicleComponents(akaHeavyTankObjManager, "AKA_HVY_TNK", facingAngle);
+        
+        
+        //CREATES MOVEMENT
+        
+        //CREATE MAIN AI
+        
+        //CREATE MAIN
+        
+        //REGISTER TO WORLD
+        BaseObject.globalWorldRegister.registerToGlobalRegistry(akaHeavyTankObjManager);
+        
+        return akaHeavyTankObjManager;
+    }    
 
     
     //SPAWNS LIGHT JEEP
-    private GameObject spawnNACScoutJeep(float x, float y, float ratio, boolean testingTOBEREMOVED) {
+    private GameObject spawnNACScoutJeep(float x, float y, float ratio, float facingAngle, boolean testingTOBEREMOVED) {
         // A method to create heavy tank
         // Create a two animation component for treads or one
         // Create one base render component (hull)
@@ -192,10 +231,11 @@ public class GameObjectFactory extends BaseObject {
         GameObject nacScoutJeepManager = new GameObject();
         nacScoutJeepManager.setPosition(x, y);
         nacScoutJeepManager.setFaction("NACTEST");
+        nacScoutJeepManager.setAngle(facingAngle);
         nacScoutJeepManager.setObjectId("JEEP");
         nacScoutJeepManager.setMovable(testingTOBEREMOVED);
         
-        spawnWheeledVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", 90);
+        spawnWheeledVehicleComponents(nacScoutJeepManager, "NAC_SCOUT_JEEP", facingAngle);
         
         return nacScoutJeepManager;
     }    
@@ -270,7 +310,7 @@ public class GameObjectFactory extends BaseObject {
         
         
         /* Movement COMPONENT */
-        MovementComponent objMovementComponent = new MovementComponent();
+        MovementComponent objMovementComponent = new MovementComponent(globalTankProperties.speed, globalTankProperties.acceleration);
         mParentObjManager.add(objMovementComponent);
         /* Create AI COMPONENT */
         
@@ -334,6 +374,7 @@ public class GameObjectFactory extends BaseObject {
         }
         
         mParentObjManager.add(baseObjVehicleChasis);
+        
     }    
     
     /* spawnTurret
